@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class November {
     public static void main(String[] args) {
@@ -596,7 +598,44 @@ public class November {
             sb2.append(temp[i]);
             sb2.append("/");
         }
-        String res = sb.toString() + sb.toString();
+        String res = sb + sb.toString();
         return res.contains(sb2.toString());
+    }
+    //leetcode No.1297 写法不完全对 有问题 准备推翻重写 先提交一版
+    public static int maxFreq(String s, int maxLetters, int minSize, int maxSize){
+        HashMap<String,Integer> map = new HashMap<>();
+        Queue<Character> q = new LinkedList<>();
+        int[] temp = new int[26];
+        int max = 0;
+        for(int i = 0;i < s.length();i++){
+            if(q.size() < maxLetters - 1){
+                q.offer(s.charAt(i));
+                temp[s.charAt(i) - 'a']++;
+            }
+            else{
+                if(q.contains(s.charAt(i))){
+                    temp[s.charAt(i) - 'a']++;
+                }
+                else {
+                    Queue<Character> t = new LinkedList<>(q);
+                    int length = 1;
+                    while(!t.isEmpty()){
+                        length += temp[t.poll() - 'a'];
+                    }
+                    if(length >= minSize && length <= maxSize){
+                        map.put(s.substring(i+1-length,i+1),map.getOrDefault(s.substring(i+1-length,i+1),0)+1);
+                    }
+                    System.out.println(map);
+                    char c = q.poll();
+                    temp[c - 'a'] = 0;
+                    q.offer(s.charAt(i));
+                    temp[s.charAt(i) - 'a']++;
+                }
+            }
+        }
+        for(int i : map.values()){
+            max = Math.max(i,max);
+        }
+        return max;
     }
 }
