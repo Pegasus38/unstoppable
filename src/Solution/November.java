@@ -638,4 +638,27 @@ public class November {
         }
         return max;
     }
+    //11.29 昨天没写 很暴躁 没心态学习 后面慢慢补上
+    //leetcode No.1758 每日一题 很笨的方法
+    public static int minOperations(String s){
+        if(s.length() == 1){
+            return 0;
+        }
+        int count1 = 0,count2 = 0;
+        String s1 = "10".repeat(s.length() / 2);
+        String s2 = "01".repeat(s.length() / 2);
+        if(s.length() % 2 != 0){
+            s1 += "1";
+            s2 += "0";
+        }
+        for(int i = 0;i < s.length();i++){
+            if(s.charAt(i) != s1.charAt(i)){
+                count1++;
+            }
+            if(s.charAt(i) != s2.charAt(i)){
+                count2++;
+            }
+        }
+        return Math.min(count1,count2);
+    }
 }
