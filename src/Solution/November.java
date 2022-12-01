@@ -601,42 +601,38 @@ public class November {
         String res = sb + sb.toString();
         return res.contains(sb2.toString());
     }
-    //leetcode No.1297 写法不完全对 有问题 准备推翻重写 先提交一版
+    //leetcode No.1297 pass
     public static int maxFreq(String s, int maxLetters, int minSize, int maxSize){
+        int res = 0;
         HashMap<String,Integer> map = new HashMap<>();
-        Queue<Character> q = new LinkedList<>();
-        int[] temp = new int[26];
-        int max = 0;
-        for(int i = 0;i < s.length();i++){
-            if(q.size() < maxLetters - 1){
-                q.offer(s.charAt(i));
-                temp[s.charAt(i) - 'a']++;
+        for(int length = minSize;length <= maxSize;length++){
+            int[] count = new int[26];
+            HashSet<Character> set = new HashSet<>();
+            for(int i = 0;i < length;i++){
+                set.add(s.charAt(i));
+                count[s.charAt(i) - 'a']++;
             }
-            else{
-                if(q.contains(s.charAt(i))){
-                    temp[s.charAt(i) - 'a']++;
+            if(set.size() <= maxLetters){
+                String s1 = s.substring(0,length);
+                map.put(s1,map.getOrDefault(s1,0)+1);
+            }
+            for(int i = length;i < s.length();i++){
+                set.add(s.charAt(i));
+                count[s.charAt(i) - 'a']++;
+                count[s.charAt(i - length) - 'a']--;
+                if(count[s.charAt(i - length) - 'a'] == 0){
+                    set.remove(s.charAt(i - length));
                 }
-                else {
-                    Queue<Character> t = new LinkedList<>(q);
-                    int length = 1;
-                    while(!t.isEmpty()){
-                        length += temp[t.poll() - 'a'];
-                    }
-                    if(length >= minSize && length <= maxSize){
-                        map.put(s.substring(i+1-length,i+1),map.getOrDefault(s.substring(i+1-length,i+1),0)+1);
-                    }
-                    System.out.println(map);
-                    char c = q.poll();
-                    temp[c - 'a'] = 0;
-                    q.offer(s.charAt(i));
-                    temp[s.charAt(i) - 'a']++;
+                if(set.size() <= maxLetters){
+                    String s2 = s.substring(i-length+1,i+1);
+                    map.put(s2,map.getOrDefault(s2,0)+1);
                 }
             }
         }
-        for(int i : map.values()){
-            max = Math.max(i,max);
+        for(int v : map.values()){
+            res = Math.max(res,v);
         }
-        return max;
+        return res;
     }
     //11.29 昨天没写 很暴躁 没心态学习 后面慢慢补上
     //leetcode No.1758 每日一题 很笨的方法
