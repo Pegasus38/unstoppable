@@ -89,4 +89,27 @@ public class December {
         }
         return list.get(k-1);
     }
+    //12.6
+    //leetcode No.2053 pass 优化之后 用两个set 用趟循环 超过100%执行用时
+    public static String kthDistinct(String[] arr, int k){
+        HashSet<String> set = new HashSet<>();
+        HashSet<String> set2 = new HashSet<>();
+        for(String s : arr){
+            if(set.contains(s)){
+                set2.add(s);
+            }
+            set.add(s);
+        }
+        for(String s : arr){
+            if(!set2.contains(s)) {
+                if(k > 0){
+                    k--;
+                    if(k == 0){
+                        return s;
+                    }
+                }
+            }
+        }
+        return "";
+    }
 }
