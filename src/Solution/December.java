@@ -112,4 +112,35 @@ public class December {
         }
         return "";
     }
+    //12.8
+    //leetcode No.2094 pass 想的有点多 后面直接写了个函数暴力写三位数 实际上不必要 每一位减完后面加回去即可
+    public static int[] findEvenNumbers(int[] digits) {
+        int[] count = new int[10];
+        for(int i : digits){
+            count[i]++;
+        }
+        List<Integer> list = new ArrayList<>();
+        for(int i = 1;i <= 9;i++){
+            if(count[i] > 0){
+                count[i]--;
+                for(int j = 0 ; j < 10;j ++){
+                    if(count[j] > 0){
+                        count[j]--;
+                        for(int k = 0;k < 10;k += 2){
+                            if(count[k] > 0){
+                                list.add(i * 100 + j * 10 + k);
+                            }
+                        }
+                        count[j]++;
+                    }
+                }
+                count[i]++;
+            }
+        }
+        int[] res = new int[list.size()];
+        for(int i = 0;i < list.size();i++){
+            res[i] = list.get(i);
+        }
+        return res;
+    }
 }
