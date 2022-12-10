@@ -143,4 +143,16 @@ public class December {
         }
         return res;
     }
+    //12.11
+    //leetcode No.1827 每日一题 pass 总感觉有坑 但是过了
+    public static int minOperations(int[] nums){
+        int res = 0;
+        for(int i = 1; i < nums.length;i++){
+            if(nums[i] <= nums[i-1]){
+                res += nums[i-1] - nums[i] + 1;
+                nums[i] = nums[i-1] + 1;
+            }
+        }
+        return res;
+    }
 }
