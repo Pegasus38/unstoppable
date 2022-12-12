@@ -199,4 +199,13 @@ public class December {
         }
         return res;
     }
+    //12.13
+    //leetcode No.1832 一眼简单题 pass
+    public static boolean checkIfPangram(String sentence){
+        HashSet<Character> set = new HashSet<>();
+        for(char c : sentence.toCharArray()){
+            set.add(c);
+        }
+        return set.size() == 26;
+    }
 }
