@@ -155,4 +155,28 @@ public class December {
         }
         return res;
     }
+    //leetcode No.873 不会做且不想做 其实很简单 数组长度不长 一路查就行了
+    public static int lenLongestFibSubseq(int[] arr){
+        int res = 2;
+        HashSet<Integer> set = new HashSet<>();
+        for(int i : arr){
+            set.add(i);
+        }
+        for(int i = 0;i < arr.length;i++){
+            for(int j = i + 1;j < arr.length;j++){
+                int a = arr[i];
+                int b = arr[j];
+                int sum = a + b;
+                int now = 2;
+                while(set.contains(sum)){
+                    a = b;
+                    b = sum;
+                    sum = a + b;
+                    now++;
+                }
+                res = Math.max(res,now);
+            }
+        }
+        return res < 3 ? 0 : res;
+    }
 }
