@@ -179,4 +179,24 @@ public class December {
         }
         return res < 3 ? 0 : res;
     }
+    //12.12
+    //leetcode No.1646 pass 搞不懂为什么简单题 提交通过率才60%+
+    public static int getMaximumGenerated(int n){
+        int[] temp = new int[100+1];
+        int res = 1;
+        temp[0] = 0;temp[1] = 1;
+        if(n == 0 || n == 1){
+            return n;
+        }
+        for(int i = 2;i <= n;i++){
+            if(i % 2 == 0){
+                temp[i] = temp[i / 2];
+            }
+            else {
+                temp[i] = temp[i/2] + temp[(i+1)/2];
+            }
+            res = Math.max(res,temp[i]);
+        }
+        return res;
+    }
 }
