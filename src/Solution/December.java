@@ -7,7 +7,6 @@ import java.util.List;
 
 public class December {
     public static void main(String[] args) {
-
     }
     //12.2
     //leetcode No.1769 每日一题 暴力解pass
@@ -199,7 +198,7 @@ public class December {
         }
         return res;
     }
-    //12.13
+    //12.13 每日一题
     //leetcode No.1832 一眼简单题 pass
     public static boolean checkIfPangram(String sentence){
         HashSet<Character> set = new HashSet<>();
@@ -207,5 +206,22 @@ public class December {
             set.add(c);
         }
         return set.size() == 26;
+    }
+    //12.15 每日一题
+    //leetcode No.1945 一眼简单题 pass
+    public static int getLucky(String s, int k){
+        StringBuilder sb = new StringBuilder();
+        for(char c:s.toCharArray()){
+            sb.append(c - 'a'+1);
+        }
+        while(k > 0){
+            int temp = 0;
+            for(char c :sb.toString().toCharArray()){
+                temp += c -'0';
+            }
+            sb = new StringBuilder(temp + "");
+            k--;
+        }
+        return Integer.parseInt(sb.toString());
     }
 }
