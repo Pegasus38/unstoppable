@@ -258,4 +258,21 @@ public class December {
         }
         return res;
     }
+    //leetcode No.781 pass 脑筋急转弯题目
+    public static int numRabbits(int[] answers){
+        int res = 0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : answers){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i : map.keySet()){
+            int tag = i + 1;
+            int time = map.get(i) / tag;
+            if(map.get(i) % tag > 0){
+                time++;
+            }
+            res += time * tag;
+        }
+        return res;
+    }
 }
