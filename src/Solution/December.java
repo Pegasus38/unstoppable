@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Arrays;
 
 public class December {
     public static void main(String[] args) {
@@ -223,5 +225,37 @@ public class December {
             k--;
         }
         return Integer.parseInt(sb.toString());
+    }
+    //12.18 很久没写 最近有点暴躁 在家只想cv 遇到困难就cv 不想动
+    //leetcode No.389 简单题 pass
+    public static char findTheDifference(String s, String t){
+        int[] count = new int[26];
+        for(char c : t.toCharArray()){
+            count[c - 'a']++;
+        }
+        for(char c : s.toCharArray()){
+            count[c - 'a']--;
+        }
+        for(int i = 0;i < count.length;i++){
+            if(count[i] > 0){
+                return (char) (i + 'a');
+            }
+        }
+        return ' ';
+    }
+    //leetcode No.1736 中等题 pass 两层暴力即可 虽然也想用复杂度为n的写法 但是不想思考了
+    public static int tupleSameProduct(int[] nums){
+        int res = 0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        Arrays.sort(nums);
+        for(int i = 0;i < nums.length;i++){
+            for(int j = i + 1 ; j < nums.length;j++){
+                if(map.containsKey(nums[i] * nums[j])){
+                    res += map.get(nums[i] * nums[j]) * 8;
+                }
+                map.put(nums[i]*nums[j],map.getOrDefault(nums[i]*nums[j],0)+1);
+            }
+        }
+        return res;
     }
 }
