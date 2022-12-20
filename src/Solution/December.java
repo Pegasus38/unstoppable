@@ -278,16 +278,13 @@ public class December {
     //12.21
     //leetcode No.1753 每日一题 和以前做过的一道简单题很像 pass
     public static int maximumScore(int a, int b, int c){
-        int res = 0;
         int[] count = new int[3];
         count[0] = a;count[1] = b;count[2] = c;
         Arrays.sort(count);
         if(count[0] + count[1] <= count[2]){
-            res = count[0] + count[1];
+            return count[0] + count[1];
         }
-        else {
-            res = (count[0]+count[1]+count[2]) / 2;
-        }
-        return res;
+        return (count[0]+count[1]+count[2]) / 2;
+
     }
 }
