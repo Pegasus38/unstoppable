@@ -285,6 +285,19 @@ public class December {
             return count[0] + count[1];
         }
         return (count[0]+count[1]+count[2]) / 2;
-
+    }
+    //12.23 羊了 但是很精神 大半夜不睡觉
+    //leetcode No.2011 每日一题 简单题 pass
+    public static int finalValueAfterOperations(String[] operations){
+        int res = 0;
+        for(String s : operations){
+            if(s.equals("++x") || s.equals("x++")){
+                res++;
+            }
+            else {
+                res--;
+            }
+        }
+        return res;
     }
 }
