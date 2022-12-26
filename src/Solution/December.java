@@ -300,4 +300,40 @@ public class December {
         }
         return res;
     }
+    //12.24 羊了的第二天还是第三天 感觉好了一丢丢
+    //leetcode No.1754 每日一题 不写了
+    public static String largestMerge(String word1, String word2){
+        StringBuilder res = new StringBuilder();
+        int idx1 = 0,idx2 = 0;
+        while(idx1 < word1.length() || idx2 < word2.length()){
+            if(idx1 < word1.length() && word1.substring(idx1).compareTo(word2.substring(idx2)) > 0){
+                res.append(word1.charAt(idx1));
+                idx1++;
+            }
+            else {
+                res.append(word2.charAt(idx2));
+                idx2++;
+            }
+        }
+        return res.toString();
+    }
+    //12.26 居家办公 一点不想动
+    //leetcode No.1759 每日一题
+    public static int countHomogenous(String s){
+        long len = 1,res = 0;
+        int mod = 1000000007;
+        for(int i = 1;i < s.length();i++){
+            if(s.charAt(i) == s.charAt(i-1)){
+                len++;
+            }
+            else {
+                res += (1 + len) * len / 2;
+                res %= mod;
+                len = 1;
+            }
+        }
+        res += (1 + len) * len / 2;
+        res %= mod;
+        return (int)res;
+    }
 }
