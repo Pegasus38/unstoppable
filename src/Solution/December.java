@@ -318,7 +318,7 @@ public class December {
         return res.toString();
     }
     //12.26 居家办公 一点不想动
-    //leetcode No.1759 每日一题
+    //leetcode No.1759 每日一题 pass
     public static int countHomogenous(String s){
         long len = 1,res = 0;
         int mod = 1000000007;
@@ -335,5 +335,22 @@ public class December {
         res += (1 + len) * len / 2;
         res %= mod;
         return (int)res;
+    }
+
+    //12.27
+    //leetcode No.2027 每日一题 pass
+    public static int minimumMoves(String s){
+        int res = 0;
+        int index = 0;
+        while(index < s.length()){
+            if(s.charAt(index) == 'O'){
+                index++;
+            }
+            else {
+                index+=3;
+                res++;
+            }
+        }
+        return res;
     }
 }
