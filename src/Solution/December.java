@@ -353,4 +353,33 @@ public class December {
         }
         return res;
     }
+    //leetcode No.896 错了一次 没有考虑不连续的单调情况 比如1,0,0,1这种
+    public static boolean isMonotonic(int[] nums){
+        if(nums.length < 3){
+            return true;
+        }
+        boolean inc = true,dec = true;
+        for(int i = 0;i < nums.length-1;++i){
+            if(nums[i] > nums[i+1]){
+                inc = false;
+            }
+            if(nums[i] < nums[i+1]){
+                dec = false;
+            }
+        }
+        return inc || dec;
+    }
+    //leetcode 剑指offer 03 pass
+    public static int findRepeatNumber(int[] nums){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i : map.keySet()){
+            if(map.get(i) > 1){
+                return i;
+            }
+        }
+        return 0;
+    }
 }
