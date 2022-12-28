@@ -436,4 +436,37 @@ public class December {
         res[s.length()] = (int)(temp - sum);
         return res;
     }
+    //12.29
+    //leetcode No.2032 每日一题 pass 但效率略低
+    public static List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3){
+        List<Integer> res = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : nums1){
+            set.add(i);
+        }
+        for(int i : set){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        set = new HashSet<>();
+        for(int i : nums2){
+            set.add(i);
+        }
+        for(int i : set){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        set = new HashSet<>();
+        for(int i : nums3){
+            set.add(i);
+        }
+        for(int i : set){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i : map.keySet()){
+            if(map.get(i) > 1){
+                res.add(i);
+            }
+        }
+        return res;
+    }
 }
