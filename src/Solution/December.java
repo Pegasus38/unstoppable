@@ -401,4 +401,39 @@ public class December {
         }
         return right - left + 1;
     }
+    //leetcode No.942 真不那么简单的简单题啊 我竟然想了一个钟
+    public static int[] diStringMatch(String s){
+        if(s.length() == 1){
+            return s.charAt(0) == 'I' ? new int[]{0,1} : new int[]{1,0};
+        }
+        int left = 0,right = s.length();
+        int[] res = new int[s.length()+1];
+        res[0] = s.charAt(0) == 'I' ? left++ : right--;
+        for(int i = 0;i < s.length()-1;i++){
+            if(s.charAt(i) == 'I'){
+                if(s.charAt(i+1) == 'I'){
+                    res[i+1] = left;
+                    left++;
+                }
+                else {
+                    res[i+1] = right;
+                    right--;
+                }
+            }
+            else {
+                if(s.charAt(i+1) == 'D'){
+                    res[i+1] = right;
+                    right--;
+                }
+                else {
+                    res[i+1] = left;
+                    left++;
+                }
+            }
+        }
+        long sum = Arrays.stream(res).sum();
+        long temp = (long) (1 + s.length()) * s.length() / 2;
+        res[s.length()] = (int)(temp - sum);
+        return res;
+    }
 }
