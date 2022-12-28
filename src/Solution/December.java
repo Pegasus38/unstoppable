@@ -382,4 +382,23 @@ public class December {
         }
         return 0;
     }
+    //12.28
+    //leetcode No.1750 每日一题 pass 总觉得不是很对 但是又过了 我最近真的对自己写的东西很没有信心啊
+    public static int minimumLength(String s){
+        int left = 0,right = s.length()-1;
+        while(s.charAt(left) == s.charAt(right) && left < right){
+            while(left + 1 < right && s.charAt(left) == s.charAt(left+1)){
+                left++;
+            }
+            while (right - 1 > left && s.charAt(right) == s.charAt(right-1)){
+                right--;
+            }
+            left++;
+            right--;
+        }
+        if(left > right){
+            return 0;
+        }
+        return right - left + 1;
+    }
 }
