@@ -469,4 +469,30 @@ public class December {
         }
         return res;
     }
+    //leetcode No.438 错了一次 忘记判断p比s长的时候返回空
+    public static List<Integer> findAnagrams(String s, String p){
+        List<Integer> res = new ArrayList<>();
+        if(s.length() < p.length()){
+            return res;
+        }
+        int[] count = new int[26];
+        for(char c : p.toCharArray()){
+            count[c - 'a']++;
+        }
+        int[] temp = new int[26];
+        for(int i = 0;i < p.length();i++){
+            temp[s.charAt(i) - 'a']++;
+        }
+        if(Arrays.equals(count,temp)){
+            res.add(0);
+        }
+        for(int i = p.length();i < s.length();i++){
+            temp[s.charAt(i) - 'a']++;
+            temp[s.charAt(i - p.length()) - 'a' ]--;
+            if(Arrays.equals(count,temp)){
+                res.add(i - p.length()+1);
+            }
+        }
+        return res;
+    }
 }
