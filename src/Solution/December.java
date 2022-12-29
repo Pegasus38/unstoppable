@@ -469,7 +469,7 @@ public class December {
         }
         return res;
     }
-    //leetcode No.438 错了一次 忘记判断p比s长的时候返回空
+    //leetcode No.438 错了一次 忘记判断p比s长的时候返回空 pass
     public static List<Integer> findAnagrams(String s, String p){
         List<Integer> res = new ArrayList<>();
         if(s.length() < p.length()){
@@ -492,6 +492,28 @@ public class December {
             if(Arrays.equals(count,temp)){
                 res.add(i - p.length()+1);
             }
+        }
+        return res;
+    }
+    //leetcode No.1974 pass 最后还得下来调试才知道哪里有问题
+    public static int minTimeToType(String word){
+        int res = 0,index = 0;
+        String s = "abcdefghijklmnopqrstuvwxyz";
+        for(char c : word.toCharArray()){
+            int pos,neg;
+            res++;
+            int tag = c - 'a';
+            int now = s.charAt(index) - 'a';
+            if(tag >= now){
+                pos = tag - now;
+                neg = now - tag + 26;
+            }
+            else {
+                neg = now - tag;
+                pos = tag - now + 26;
+            }
+            res += Math.min(pos,neg);
+            index = c - 'a';
         }
         return res;
     }
