@@ -40,4 +40,13 @@ public class LeetCodeAnswer2023 {
         }
         return set.size();
     }
+    //补充一下 1月8号这天通宵了 凌晨五点 先写道题精神精神
+    //leetcode No.1920 纯送分题 pass
+    public static int[] buildArray(int[] nums){
+        int[] res = new int[nums.length];
+        for(int i = 0;i < nums.length;i++){
+            res[i] = nums[nums[i]];
+        }
+        return res;
+    }
 }
