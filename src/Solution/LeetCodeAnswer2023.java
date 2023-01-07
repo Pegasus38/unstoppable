@@ -2,6 +2,7 @@ package Solution;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -26,5 +27,17 @@ public class LeetCodeAnswer2023 {
             res = Math.max(res,nums.length-1-map.get(x));
         }
         return res == -1 ? -1 : nums.length - res;
+    }
+    //1.8
+    //leetcode No.2442 pass
+    public static int countDistinctIntegers(int[] nums){
+        HashSet<Integer> set = new HashSet<>();
+        for(int i : nums){
+            set.add(i);
+            StringBuilder sb = new StringBuilder(String.valueOf(i));
+            int temp = Integer.parseInt(sb.reverse().toString());
+            set.add(temp);
+        }
+        return set.size();
     }
 }
