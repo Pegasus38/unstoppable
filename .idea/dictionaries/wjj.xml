@@ -2,6 +2,7 @@
   <dictionary name="wjj">
     <words>
       <w>abcdefghijklmnopqrstuvwxyz</w>
+      <w>leet</w>
       <w>leetcode</w>
       <w>nums</w>
       <w>pangram</w>
