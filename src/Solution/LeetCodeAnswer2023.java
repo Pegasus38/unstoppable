@@ -3,6 +3,8 @@ package Solution;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -48,5 +50,33 @@ public class LeetCodeAnswer2023 {
             res[i] = nums[nums[i]];
         }
         return res;
+    }
+    //leetcode No.318 不会位运算 试试暴力能不能ac先 pass了 虽然有点小笨 但是还是有效的
+    public static int maxProduct(String[] words){
+        int res = 0;
+        List<int[]> list = new ArrayList<>();
+        for(String s : words){
+            int[] temp = new int[26];
+            for(char c :s.toCharArray()){
+                temp[c - 'a']++;
+            }
+            list.add(temp);
+        }
+        for(int i = 0;i < list.size() - 1;i++){
+            for(int j = i + 1;j < list.size();j++){
+                if(!haveSameElement(list.get(i),list.get(j))){
+                    res = Math.max(res,words[i].length() * words[j].length());
+                }
+            }
+        }
+        return res;
+    }
+    private static boolean haveSameElement(int[] a,int[] b){
+            for(int i = 0;i < 26;i++){
+                if(a[i] > 0 && b[i] > 0){
+                    return true;
+                }
+            }
+            return false;
     }
 }
