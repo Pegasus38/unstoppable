@@ -79,4 +79,19 @@ public class LeetCodeAnswer2023 {
             }
             return false;
     }
+    //1.15 这星期好像没有在自己电脑上提交过东西 星期六是hard没办法
+    //leetcode No.2293 pass
+    public static int minMaxGame(int[] nums){
+        while(nums.length > 1){
+            int[] t = new int[nums.length / 2];
+            for(int i = 0;i < t.length;i+=2){
+                t[i] = Math.min(nums[2 * i],nums[2 * i+1]);
+            }
+            for(int i = 1;i < t.length;i += 2){
+                t[i] = Math.max(nums[2 * i],nums[2 * i+1]);
+            }
+            nums = t;
+        }
+        return nums[0];
+    }
 }
