@@ -94,4 +94,49 @@ public class LeetCodeAnswer2023 {
         }
         return nums[0];
     }
+    //1.19 准备收拾东西回家
+    //leetcode NO.2299 每日一题 我服了 符号错了 真几把服了
+    public static boolean strongPasswordCheckerII(String password){
+        boolean tag_lower = false;
+        boolean tag_upper = false;
+        boolean tag_num = false;
+        boolean tag_special = false;
+        boolean tag_noSame = true;
+        String s = "!@#$%^&*()_+";
+        if(password.length() < 8){
+            return false;
+        }
+        for(int i = 0;i < password.length() - 1;i++){
+            char c = password.charAt(i);
+            if(Character.isDigit(c)){
+                tag_num = true;
+            }
+            if(Character.isUpperCase(c)){
+                tag_upper = true;
+            }
+            if(Character.isLowerCase(c)){
+                tag_lower = true;
+            }
+            if(s.indexOf(c) >= 0){
+                tag_special = true;
+            }
+            if(c == password.charAt(i+1)){
+                tag_noSame = false;
+            }
+        }
+        char last = password.charAt(password.length()-1);
+        if(Character.isDigit(last)){
+            tag_num = true;
+        }
+        if(Character.isUpperCase(last)){
+            tag_upper = true;
+        }
+        if(Character.isLowerCase(last)){
+            tag_lower = true;
+        }
+        if(s.indexOf(last) >= 0){
+            tag_special = true;
+        }
+        return tag_noSame && tag_lower && tag_upper && tag_special && tag_num;
+    }
 }
