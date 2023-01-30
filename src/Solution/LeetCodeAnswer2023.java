@@ -139,4 +139,29 @@ public class LeetCodeAnswer2023 {
         }
         return tag_noSame && tag_lower && tag_upper && tag_special && tag_num;
     }
+    //1.31 回来之后还没写过 牙痛了好几天
+    //leetcode No.2319 每日一题 pass
+    public static boolean checkXMatrix(int[][] grid){
+        int length = grid.length;
+        for(int i = 0;i < grid.length;i++){
+            for(int j = 0;j < grid.length;j++){
+                if(j == i){
+                    if(grid[i][j] == 0){
+                        return false;
+                    }
+                }
+                else if(j == length - i - 1){
+                    if(grid[i][j] == 0){
+                        return false;
+                    }
+                }
+                else {
+                    if(grid[i][j] != 0){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
