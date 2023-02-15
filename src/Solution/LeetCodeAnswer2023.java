@@ -164,4 +164,18 @@ public class LeetCodeAnswer2023 {
         }
         return true;
     }
+    //2.16 应该有半个月没在自己电脑上写过东西了
+    //leetcode No.2341 每日一题 pass
+    public static int[] numberOfPairs(int[] nums){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        int count = 0,time = 0;
+        for(int i : map.keySet()){
+            count += map.get(i) / 2;
+            time += map.get(i) % 2;
+        }
+        return new int[]{count,time};
+    }
 }
