@@ -178,4 +178,20 @@ public class LeetCodeAnswer2023 {
         }
         return new int[]{count,time};
     }
+    //2.19 最近发现做题有点浮躁了 只想挑一眼简单的做 遇到难题就装死
+    //leetcode No.2490 这都能WA一次 服了
+    public static boolean isCircularSentence(String sentence){
+        String[] t = sentence.split(" ");
+        if(t.length == 1){
+            return t[0].charAt(0) == t[0].charAt(t[0].length()-1);
+        }
+        for(int i = 1;i < t.length;i++){
+            String a = t[i-1];
+            String b = t[i];
+            if(a.charAt(a.length()-1) != b.charAt(0)){
+                return false;
+            }
+        }
+        return t[0].charAt(0) == t[t.length - 1].charAt(t[t.length - 1].length() - 1);
+    }
 }
