@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class myCommonMethod {
+public class MyCommonMethod {
     //根据value获取key的方法，常用
     public static List<Integer> myGetKey(HashMap<Integer,Integer> map, int value){
         List<Integer> list = new ArrayList<>();

@@ -194,4 +194,30 @@ public class LeetCodeAnswer2023 {
         }
         return t[0].charAt(0) == t[t.length - 1].charAt(t[t.length - 1].length() - 1);
     }
+    //leetcode No.1222 pass 其实很简单 复杂度是8 * 8 * n
+    public static List<List<Integer>> queensAttackTheKing(int[][] queens, int[] king){
+        List<List<Integer>> res = new ArrayList<>();
+        int[][] direction = {{-1,1},{0,1},{1,1},{-1,0},{1,0},{-1,-1},{0,-1},{1,-1}};
+        for(int[] i : direction){
+            int x = king[0],y = king[1];
+            boolean tag = false;
+            while(x >= 0 && x < 8 && y >= 0 && y < 8){
+                int new_x = x + i[0];
+                int new_y = y + i[1];
+                for(int[] j : queens){
+                    if(j[0] == new_x && j[1] == new_y){
+                        res.add(Arrays.asList(j[0],j[1]));
+                        tag = true;
+                        break;
+                    }
+                }
+                if(tag){
+                    break;
+                }
+                x = new_x;
+                y = new_y;
+            }
+        }
+        return res;
+    }
 }
