@@ -220,4 +220,28 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //2.20 尝试一下五分钟内搞定 每日一题 简单题 pass 下机
+    //leetcode No.2347
+    public static String bestHand(int[] ranks, char[] suits){
+        //如果有同花的 就返回这个
+        if(suits[0] == suits[1] && suits[1] == suits[2] && suits[2] == suits[3] && suits[3] == suits[4]){
+            return "Flush";
+        }
+        int[] poker = new int[13];
+        for(int i : ranks){
+            poker[i-1]++;
+        }
+        int max = 0;
+        for(int i : poker) {
+            max = Math.max(max,i);
+        }
+        //从高到低 从3 到2 什么都没就返回最后一个
+        if(max >= 3){
+            return "Three of a Kind";
+        }
+        else if(max == 2){
+            return "Pair";
+        }
+        return "High Card";
+    }
 }
