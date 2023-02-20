@@ -244,4 +244,23 @@ public class LeetCodeAnswer2023 {
         }
         return "High Card";
     }
+    //2.21 继续挑战五分钟一道题 pass 用时十分钟
+    //leetcode No.482
+    public static String licenseKeyFormatting(String s, int k){
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()){
+            if(c != '-'){
+                sb.append(c);
+            }
+        }
+        sb.reverse();
+        StringBuilder res = new StringBuilder();
+        for(int i = 0;i < sb.length();i++){
+            res.append(sb.charAt(i));
+            if((i+1) % k == 0 && (i+1) != sb.length()){
+                res.append("-");
+            }
+        }
+        return res.reverse().toString().toUpperCase();
+    }
 }
