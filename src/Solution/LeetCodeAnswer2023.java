@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -262,5 +263,30 @@ public class LeetCodeAnswer2023 {
             }
         }
         return res.reverse().toString().toUpperCase();
+    }
+    //leetcode No.2570 pass 但是我后面想到他是递增的 应该会简单点
+    public static int[][] mergeArrays(int[][] nums1, int[][] nums2){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int[] i : nums1){
+            map.put(i[0],i[1]);
+        }
+        for(int[] i : nums2){
+            int key = i[0];
+            int value = i[1];
+            if(map.containsKey(key)){
+                map.put(key,map.get(key)+value);
+            }
+            else {
+                map.put(key,value);
+            }
+        }
+        int[][] res = new int[map.keySet().size()][2];
+        List<Integer> list = new ArrayList<>(map.keySet());
+        Collections.sort(list);
+        for(int i = 0;i < res.length;i++){
+            res[i][0] = list.get(i);
+            res[i][1] = map.get(list.get(i));
+        }
+        return res;
     }
 }
