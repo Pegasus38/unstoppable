@@ -289,4 +289,39 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //2.25 每日一题
+    //leetcode No.1247 错了一遍 被这个傻逼提示坑了
+    public static int minimumSwap(String s1, String s2){
+        int res = 0;
+        //第一遍 先过滤掉不同的位置的 相同的话就不检索
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < s1.length();i++){
+            if(s1.charAt(i) != s2.charAt(i)){
+                sb.append(s1.charAt(i));
+            }
+        }
+        //如果sb不为空的话
+        if(!sb.isEmpty()) {
+            if(sb.length() % 2 != 0){
+                return -1;
+            }
+            else {
+                int x = 0,y = 0;
+                for(char c :sb.toString().toCharArray()){
+                    if(c == 'x'){
+                        x++;
+                    }
+                    else {
+                        y++;
+                    }
+                }
+                if(x % 2 != 0 && y % 2 != 0){
+                    res += 2;
+                }
+                res += x / 2;
+                res += y / 2;
+            }
+        }
+        return res;
+    }
 }
