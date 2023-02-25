@@ -324,4 +324,26 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //2.26 每日一题是hard 随便找一个顺眼的medium
+    //leetcode No.1362 pass
+    public static int[] closestDivisors(int num){
+        int a = num + 1,b = num + 2;
+        int sqrt_a = (int)Math.sqrt(a);
+        int sqrt_b = (int)Math.sqrt(b);
+        if(sqrt_a * sqrt_a == a){
+            return new int[]{sqrt_a,sqrt_a};
+        }
+        if(sqrt_b * sqrt_b == b){
+            return new int[]{sqrt_b,sqrt_b};
+        }
+        while(a % sqrt_a != 0){
+            sqrt_a--;
+        }
+        while(b % sqrt_b != 0){
+            sqrt_b--;
+        }
+        int min_a = a / sqrt_a - sqrt_a;
+        int min_b = b / sqrt_b - sqrt_b;
+        return min_a <= min_b ? new int[]{a/sqrt_a,sqrt_a} : new int[]{b/sqrt_b,sqrt_b};
+    }
 }
