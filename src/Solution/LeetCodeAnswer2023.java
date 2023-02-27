@@ -1,11 +1,6 @@
 package Solution;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -345,5 +340,14 @@ public class LeetCodeAnswer2023 {
         int min_a = a / sqrt_a - sqrt_a;
         int min_b = b / sqrt_b - sqrt_b;
         return min_a <= min_b ? new int[]{a/sqrt_a,sqrt_a} : new int[]{b/sqrt_b,sqrt_b};
+    }
+    //2.27
+    //leetcode No.575 差点理解错题意
+    public static int distributeCandies(int[] candyType){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : candyType){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        return Math.min(map.keySet().size(), candyType.length / 2);
     }
 }
