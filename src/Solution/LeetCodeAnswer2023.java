@@ -1,6 +1,11 @@
 package Solution;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -349,5 +354,26 @@ public class LeetCodeAnswer2023 {
             map.put(i,map.getOrDefault(i,0)+1);
         }
         return Math.min(map.keySet().size(), candyType.length / 2);
+    }
+    //3.1 每日一题
+    //leetcode No.2373 牛马写法 虽然我很想用什么滑动窗口 但是写不出
+    public static int[][] largestLocal(int[][] grid){
+        int n = grid.length;
+        int[][] res = new int[n-2][n-2];
+        for(int i = 1;i < n - 1;i ++){
+            for(int j = 1;j < n - 1;j++){
+                int center = grid[i][j];
+                center = Math.max(center,grid[i-1][j]);
+                center = Math.max(center,grid[i-1][j-1]);
+                center = Math.max(center,grid[i-1][j+1]);
+                center = Math.max(center,grid[i][j-1]);
+                center = Math.max(center,grid[i][j+1]);
+                center = Math.max(center,grid[i+1][j-1]);
+                center = Math.max(center,grid[i+1][j]);
+                center = Math.max(center,grid[i+1][j+1]);
+                res[i-1][j-1] = center;
+            }
+        }
+        return res;
     }
 }
