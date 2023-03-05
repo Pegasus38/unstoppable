@@ -376,4 +376,42 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //3.5 这两天的每日一题 一天是hard一天是牛马阅读理解题 做都不想做
+    //leetcode No.290
+    public static boolean wordPattern(String pattern, String s) {
+        String[] temp = s.split(" ");
+        //map存字符和下标
+        HashMap<Character,List<Integer>> map = new HashMap<>();
+        for(int i = 0;i < pattern.length();i++){
+            if(!map.containsKey(pattern.charAt(i))){
+                map.put(pattern.charAt(i),new ArrayList<>());
+            }
+            map.get(pattern.charAt(i)).add(i);
+        }
+        HashSet<String> set = new HashSet<>();
+        Collections.addAll(set, temp);
+        if(set.size() != map.keySet().size()){
+            return false;
+        }
+        //先统计一波单词长度
+        int sum = 0;
+        for(char c : map.keySet()){
+            sum += map.get(c).size();
+        }
+        if(sum != temp.length){
+            return false;
+        }
+        for(char c : map.keySet()){
+            List<Integer> index = map.get(c);
+            int first_index = index.get(0);
+            String t = temp[first_index];
+            for(int i = 1;i < index.size();i++){
+                int target_index = index.get(i);
+                if(!temp[target_index].equals(t)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
