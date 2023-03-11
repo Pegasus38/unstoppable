@@ -414,4 +414,32 @@ public class LeetCodeAnswer2023 {
         }
         return true;
     }
+    //3.11 今天去洗了牙 很几把难受
+    //leetcode 面试题 17.05 其实这个题和No.525 连续数组是一个思路 所以照搬就可以了
+    public static String[] findLongestSubArray(String[] array){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0,-1);
+        int sum = 0,max = 0,start = 0;
+        for(int i = 0;i < array.length;i++){
+            char c = array[i].charAt(0);
+            sum += Character.isDigit(c) ? 1 : -1;
+            if(map.containsKey(sum)){
+                int j = map.get(sum);
+                //max = Math.max(max,i-j);
+                if(i-j > max){
+                    max = i-j;
+                    start = j+1;
+                }
+            }
+            else {
+                map.put(sum,i);
+            }
+        }
+        String[] res = new String[max];
+        for(int i = 0;i < res.length;i++){
+            res[i] = array[start];
+            start++;
+        }
+        return res;
+    }
 }
