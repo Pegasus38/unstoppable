@@ -442,4 +442,30 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //3.12 写完睡觉
+    //leetcode No.884 pass
+    public static String[] uncommonFromSentences(String s1, String s2){
+        String[] t1 = s1.split(" ");
+        String[] t2 = s2.split(" ");
+        HashMap<String,Integer> map1 = new HashMap<>();
+        HashMap<String,Integer> map2 = new HashMap<>();
+        for(String t : t1){
+            map1.put(t,map1.getOrDefault(t,0)+1);
+        }
+        for(String t : t2){
+            map2.put(t,map2.getOrDefault(t,0)+1);
+        }
+        List<String> res = new ArrayList<>();
+        for(String t:map1.keySet()){
+            if(map1.get(t) == 1 && !map2.containsKey(t)){
+                res.add(t);
+            }
+        }
+        for(String t:map2.keySet()){
+            if(map2.get(t) == 1 && !map1.containsKey(t)){
+                res.add(t);
+            }
+        }
+        return res.toArray(new String[0]);
+    }
 }
