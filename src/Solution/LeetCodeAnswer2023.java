@@ -468,4 +468,15 @@ public class LeetCodeAnswer2023 {
         }
         return res.toArray(new String[0]);
     }
+    //3.27 真好久没写 主要是这两周的周末题不是hard就是做过的
+    //leetcode No.551
+    public static boolean checkRecord(String s){
+        int count = 0;
+        for(char c: s.toCharArray()){
+            if(c == 'A'){
+                count++;
+            }
+        }
+        return count < 2 && !s.contains("LLL");
+    }
 }
