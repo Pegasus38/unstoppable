@@ -479,4 +479,45 @@ public class LeetCodeAnswer2023 {
         }
         return count < 2 && !s.contains("LLL");
     }
+    //3.29 11点回到家 写个题去洗澡
+    //leetcode No.1641 每日一题 pass
+    public static int countVowelStrings(int n){
+        if(n == 1){
+            return 5;
+        }
+        int a = 1,b = 1,c = 1,d = 1,e = 1;
+        for(int i = 1;i < n;i++){
+            int t2 = a + b;
+            int t3 = t2 + c;
+            int t4 = t3 + d;
+            int t5 = t4 + e;
+            b = t2;c = t3;d = t4;e = t5;
+        }
+        return a+b+c+d+e;
+    }
+    //再来写一下学习project里的题 上来就是梦开始的地方
+    //leetcode No.1 两数之和
+    public static int[] twoSum(int[] nums, int target){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i < nums.length;i++){
+            if(map.containsKey(target - nums[i])){
+                return new int[]{i,map.get(target-nums[i])};
+            }
+            map.put(nums[i],i);
+        }
+        return new int[]{};
+    }
+    //然后是一道我当时提交错了五遍的题目 纯牛马 把数导进去之后还排序 虽然我昨天之前也是这样写的
+    //leetcode No.88 合并两个有序数组
+    public static void merge(int[] nums1, int m, int[] nums2, int n){
+        int len = m + n - 1;
+        m--;n--;
+        while(m >= 0 && n >= 0){
+            nums1[len--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+        }
+        while(n >= 0){
+            nums1[len--] = nums2[n--];
+        }
+    }
+
 }
