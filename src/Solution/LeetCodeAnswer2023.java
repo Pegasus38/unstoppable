@@ -519,5 +519,34 @@ public class LeetCodeAnswer2023 {
             nums1[len--] = nums2[n--];
         }
     }
-
+    //3.30 今天的每日一题稍微有点长 先不做了
+    //leetcode No.350 两个数组交集
+    public static int[] intersect(int[] nums1, int[] nums2){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+        for(int i : nums1){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i : nums2){
+            if(map.getOrDefault(i,0)>0){
+                list.add(i);
+                map.put(i,map.get(i)-1);
+            }
+        }
+        int[] res = new int[list.size()];
+        for(int i = 0;i < res.length;i++){
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+    //leetcode No.121 经典中的经典之dp题 我已经把答案背下来了 毕竟我提交WA了四次
+    public static int maxProfit(int[] prices){
+        int min = prices[0];
+        int max = 0;
+        for(int i = 1;i < prices.length;i++){
+            max = Math.max(max,prices[i]-min);
+            min = Math.min(min,prices[i]);
+        }
+        return max;
+    }
 }
