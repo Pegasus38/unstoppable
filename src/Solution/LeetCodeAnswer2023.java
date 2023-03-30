@@ -549,4 +549,21 @@ public class LeetCodeAnswer2023 {
         }
         return max;
     }
+    //3.31 下了一星期的雨
+    //leetcode No.2367 每日一题 不想动脑 我要暴力 pass
+    public static int arithmeticTriplets(int[] nums, int diff){
+        int res = 0;
+        for(int i = 0;i < nums.length - 2;i++){
+            for(int j = i + 1;j < nums.length - 1;j++){
+                if(nums[j] - nums[i] == diff){
+                    for(int k = j + 1;k < nums.length;k++){
+                        if(nums[k] - nums[j] == diff){
+                            res++;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }
