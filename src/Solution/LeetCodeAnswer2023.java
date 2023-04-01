@@ -566,4 +566,54 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //4.1 停雨了
+    //leetcode No.831 每日一题 pass
+    public static String maskPII(String s){
+        StringBuilder sb = new StringBuilder();
+        if(s.contains("@")){
+            String[] t = s.split("@");
+            String part1 = t[0];
+            String part2 = t[1];
+            char c1 = Character.toLowerCase(part1.charAt(0));
+            char c2 = Character.toLowerCase(part1.charAt(part1.length()-1));
+            part1 = c1 + "*****" + c2;
+            sb.append(part1);
+            sb.append("@");
+            for(char c : part2.toCharArray()){
+                if(Character.isUpperCase(c)){
+                    sb.append(Character.toLowerCase(c));
+                }
+                else {
+                    sb.append(c);
+                }
+            }
+        }
+        else {
+            for(char c : s.toCharArray()){
+                if(Character.isDigit(c)){
+                    sb.append(c);
+                }
+            }
+            String t = sb.toString();
+            String num = t.substring(t.length()-4);
+            sb = new StringBuilder();
+            if(t.length() == 10){
+                sb.append("***-***-");
+                sb.append(num);
+            }
+            else if(t.length() == 11){
+                sb.append("+*-***-***-");
+                sb.append(num);
+            }
+            else if(t.length() == 12){
+                sb.append("+**-***-***-");
+                sb.append(num);
+            }
+            else {
+                sb.append("+***-***-***-");
+                sb.append(num);
+            }
+        }
+        return sb.toString();
+    }
 }
