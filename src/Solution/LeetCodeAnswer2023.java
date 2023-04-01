@@ -616,4 +616,103 @@ public class LeetCodeAnswer2023 {
         }
         return sb.toString();
     }
+    //No.73 做过一次 再来一次 结果还是错了 看到忘了第二次扫是从1,1开始才对，不能从0,0赋值
+    public static void setZeroes(int[][] matrix){
+        boolean column = false,row = false;
+        int m = matrix.length,n = matrix[0].length;
+        for(int i = 0;i < n;i++){
+            if(matrix[0][i] == 0){
+                row = true;
+                break;
+            }
+        }
+        for (int[] ints : matrix) {
+            if (ints[0] == 0) {
+                column = true;
+                break;
+            }
+        }
+        for(int i = 1;i < m;i++){
+            for(int j = 1;j < n;j++){
+                if(matrix[i][j] == 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        for(int i = 1;i < m;i++){
+            if(matrix[i][0] == 0){
+                for(int j = 0;j < n;j++){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        for(int i = 1;i < n;i++){
+            if(matrix[0][i] == 0){
+                for(int j = 0;j < m;j++){
+                    matrix[j][i] = 0;
+                }
+            }
+        }
+        if(column){
+            for(int i = 0;i < m;i++){
+                matrix[i][0] = 0;
+            }
+        }
+        if(row){
+            for(int i = 0;i < n;i++){
+                matrix[0][i] = 0;
+            }
+        }
+    }
+    //leetcode No.36 pass
+    public static boolean isValidSudoku(char[][] board){
+        //扫每一列
+        for(int i = 0;i < 9;i++){
+            HashSet<Integer> set = new HashSet<>();
+            for(int j = 0;j < 9;j++){
+                if(Character.isDigit(board[i][j])){
+                    if(set.contains(board[i][j]-'0')){
+                        return false;
+                    }
+                    else {
+                        set.add(board[i][j]-'0');
+                    }
+                }
+            }
+        }
+        //扫每一行
+        for(int i = 0;i < 9;i++){
+            HashSet<Integer> set = new HashSet<>();
+            for(int j = 0;j < 9;j++){
+                if(Character.isDigit(board[j][i])){
+                    if(set.contains(board[j][i]-'0')){
+                        return false;
+                    }
+                    else {
+                        set.add(board[j][i]-'0');
+                    }
+                }
+            }
+        }
+        //牛马的四层循环扫九宫格法
+        for(int i = 0;i < 9;i+=3){
+            for(int j = 0;j < 9;j += 3){
+                HashSet<Integer> set = new HashSet<>();
+                for(int a = 0;a < 3;a++){
+                    for(int b = 0;b < 3;b++){
+                        if(Character.isDigit(board[i+a][j+b])){
+                            if(set.contains(board[i+a][j+b]-'0')){
+                                return false;
+                            }
+                            else {
+                                set.add(board[i+a][j+b]-'0');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
