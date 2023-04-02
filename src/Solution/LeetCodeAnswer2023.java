@@ -715,4 +715,60 @@ public class LeetCodeAnswer2023 {
         }
         return true;
     }
+    //4.2 今天的dp题不想写 做点简单弱智题
+    //leetcode No.387
+    public static int firstUniqueChar(String s){
+        int[] index = new int[26];
+        Arrays.fill(index,-2);
+        for(int i = 0;i < s.length();i++){
+            int now = s.charAt(i) - 'a';
+            //如果他等于-2 说明是首次出现 可以赋值
+            if(index[now] == -2){
+                index[now] = i;
+            }
+            //如果他大于等于0 说明已经赋值过了 如果这时候再出现 就给他变成-1
+            else if(index[now] >= 0){
+                index[now] = -1;
+            }
+        }
+        int min = Integer.MAX_VALUE;
+        for(int i : index){
+            if(i >= 0){
+                min = Math.min(min,i);
+            }
+        }
+        return min == Integer.MAX_VALUE ? -1 : min;
+    }
+    //leetcode No.383
+    public static boolean canConstruct(String ransomNote, String magazine){
+        int[] count = new int[26];
+        for(char c : magazine.toCharArray()){
+            count[c-'a']++;
+        }
+        for(char c : ransomNote.toCharArray()){
+            count[c-'a']--;
+        }
+        for(int i : count){
+            if(i < 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    //leetcode No.242
+    public static boolean isAnagram(String s, String t){
+        int[] count = new int[26];
+        for(char c: s.toCharArray()){
+            count[c-'a']++;
+        }
+        for(char c:t.toCharArray()){
+            count[c-'a']--;
+        }
+        for(int i : count){
+            if(i != 0){
+                return false;
+            }
+        }
+        return true;
+    }
 }
