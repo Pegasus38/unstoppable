@@ -771,4 +771,19 @@ public class LeetCodeAnswer2023 {
         }
         return true;
     }
+    //4.5 放假一天
+    //leetcode No.2427 每日一题 pass
+    public static int commonFactors(int a, int b){
+        if(a < b){
+            return commonFactors(b,a);
+        }
+        int res = 0,n = b;
+        while(n > 0){
+            if(a % n == 0 && b % n == 0){
+                res++;
+            }
+            n--;
+        }
+        return res;
+    }
 }
