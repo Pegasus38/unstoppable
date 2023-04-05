@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -785,5 +786,46 @@ public class LeetCodeAnswer2023 {
             n--;
         }
         return res;
+    }
+    //leetcode No.20 回归经典 当时提交错四次的题目 还是easy 差点写反了
+    public static boolean isValid(String s){
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()){
+            if((c == '(') || (c == '[') || (c == '{')){
+                stack.push(c);
+            }
+            else {
+                if(stack.isEmpty()){
+                    return false;
+                }
+                else {
+                    if(c == ')'){
+                        if(stack.peek() == '('){
+                            stack.pop();
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                    else if(c == ']'){
+                        if(stack.peek() == '['){
+                            stack.pop();
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                    else{
+                        if(stack.peek() == '{'){
+                            stack.pop();
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 }
