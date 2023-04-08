@@ -828,4 +828,23 @@ public class LeetCodeAnswer2023 {
         }
         return stack.isEmpty();
     }
+    //4.9 做完睡觉
+    //leetcode No.2399 用会之前的老办法吧
+    public static boolean checkDistances(String s, int[] distance){
+        HashMap<Character, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (!map.containsKey(s.charAt(i))) {
+                map.put(s.charAt(i), new ArrayList<>());
+            }
+            map.get(s.charAt(i)).add(i);
+        }
+        for(char c : map.keySet()){
+            int start = map.get(c).get(0);
+            int end = map.get(c).get(1);
+            if(distance[(int)c - 97] != end - start - 1){
+                return false;
+            }
+        }
+        return true;
+    }
 }
