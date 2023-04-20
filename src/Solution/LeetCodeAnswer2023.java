@@ -847,4 +847,9 @@ public class LeetCodeAnswer2023 {
         }
         return true;
     }
+    //4.21 最近没什么时间刷题 每日一题都是cv比较多 简单的做过 中等的不会 难的直接copy 心态越来越不好
+    //leetcode No.2413 弱智题
+    public static int smallestEvenMultiple(int n){
+        return n % 2 == 0 ? n : 2 * n;
+    }
 }
