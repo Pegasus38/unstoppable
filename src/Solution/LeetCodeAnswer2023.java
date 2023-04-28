@@ -852,31 +852,4 @@ public class LeetCodeAnswer2023 {
     public static int smallestEvenMultiple(int n){
         return n % 2 == 0 ? n : 2 * n;
     }
-    //4.29 我在想为什么这道简单题的通过率不到20%
-    //leetcode No.2423 pass 但是我竟然发现我之前做过这道题 虽然他妈用了不同的方法 但是时间和内存竟然是一模一样的 说明我好像一点进步没有 纯牛马
-    public static boolean equalFrequency(String word){
-        int[] count = new int[26];
-        for(int i = 0;i < word.length();i++){
-            String s = word.substring(0,i) + word.substring(i+1);
-            for(char c : s.toCharArray()){
-                count[c-'a']++;
-            }
-            Arrays.sort(count);
-            int num = count[25];
-            boolean tag = true;
-            for(int j = 24;j >= 0;j--){
-                if(count[j] != 0){
-                    if(count[j] != num){
-                        tag = false;
-                        break;
-                    }
-                }
-            }
-            if(tag){
-                return true;
-            }
-            count = new int[26];
-        }
-        return false;
-    }
 }
