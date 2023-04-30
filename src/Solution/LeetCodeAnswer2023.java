@@ -879,4 +879,18 @@ public class LeetCodeAnswer2023 {
         }
         return false;
     }
+    //5.1 讲出来可能不信 我竟然在51这天跟工作跟到凌晨三点
+    //面试题17.10 我受不了了 我要直接用map 什么叫摩尔投票法啊 没有map没有sort做个鸡毛啊
+    public static int majorityElement(int[] nums){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i : map.keySet()){
+            if(map.get(i) > nums.length / 2){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
