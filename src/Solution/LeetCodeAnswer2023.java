@@ -893,4 +893,35 @@ public class LeetCodeAnswer2023 {
         }
         return -1;
     }
+    //5.3 每日一题
+    //leetcode No.1003 pass
+    public static boolean isValid2(String s){
+        //长度不是3的倍数 直接false
+        if(s.length() % 3 != 0){
+            return false;
+        }
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()){
+            if(c != 'c'){
+                stack.push(c);
+            }
+            else {
+                //遇到c的时候 如果栈为空或者长度<2 说明没东西弹 说明是false
+                if(stack.isEmpty() || stack.size() < 2){
+                    return false;
+                }
+                else {
+                    int first = stack.pop();
+                    int second = stack.peek();
+                    if (first == 'b' && second == 'a') {
+                        stack.pop();
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
 }
