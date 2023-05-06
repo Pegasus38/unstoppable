@@ -924,4 +924,16 @@ public class LeetCodeAnswer2023 {
         }
         return stack.isEmpty();
     }
+    //5.7
+    //leetcode No.1010 pass
+    public static int numPairsDivisibleBy60(int[] time){
+        int res = 0;
+        int[] count = new int[60];
+        for(int i : time){
+            int mod = i % 60;
+            res += mod == 0 ? count[0] : count[60-mod];
+            count[mod]++;
+        }
+        return res;
+    }
 }
