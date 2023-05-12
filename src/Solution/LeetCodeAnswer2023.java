@@ -936,4 +936,18 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //5.13
+    //leetcode No.2441 pass
+    public static int findMaxK(int[] nums){
+        HashSet<Integer> set = new HashSet<>();
+        int max = -1;
+        for(int i : nums){
+            int target = -i;
+            if(set.contains(target)){
+                max = Math.max(max,Math.abs(i));
+            }
+            set.add(i);
+        }
+        return max;
+    }
 }
