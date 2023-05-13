@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+import java.util.PriorityQueue;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -949,5 +950,53 @@ public class LeetCodeAnswer2023 {
             set.add(i);
         }
         return max;
+    }
+    //5.14
+    //leetcode No.1054 pass
+    public static int[] rearrangeBarcodes(int[] barcodes){
+        if(barcodes.length == 1){
+            return barcodes;
+        }
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : barcodes){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        int[] res = new int[barcodes.length];
+        PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> (o2[0]-o1[0]));
+        for(int i : map.keySet()){
+            queue.offer(new int[]{map.get(i),i});//优先队列存放格式：[次数,元素]
+        }
+        if(!queue.isEmpty()) {
+            int[] first_pop = queue.poll();//先弹一个出来
+            res[0] = first_pop[1];
+            first_pop[0]--;
+            if (first_pop[0] != 0) {
+                queue.offer(first_pop);//如果没有的话就不用插回去，如果有的话就继续插回去
+            }
+        }
+        for(int i = 1;i < res.length;i++){
+            int cur = res[i-1];
+            int[] top = queue.poll();//顶弹出来
+            //如果顶的值和上一次不等，就把顶的值放入当前，然后次数-1，如果次数-1之后不等于0，就再放回去；如果等于0了就取出了不管了
+            assert top != null;
+            if(cur != top[1]){
+                res[i] = top[1];
+                top[0]--;
+                if(top[0] != 0){
+                    queue.offer(top);
+                }
+            }
+            else {
+                int[] new_top = queue.poll();
+                assert new_top != null;
+                res[i] = new_top[1];
+                new_top[0]--;
+                if(new_top[0] != 0){
+                    queue.offer(new_top);
+                }
+                queue.offer(top);
+            }
+        }
+        return res;
     }
 }
