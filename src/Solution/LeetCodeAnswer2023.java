@@ -1,13 +1,6 @@
 package Solution;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class LeetCodeAnswer2023 {
     //今年所有的刷题记录都整合在这里吧 2023加油
@@ -998,5 +991,18 @@ public class LeetCodeAnswer2023 {
             }
         }
         return res;
+    }
+    //5.17
+    //leetcode No.2446
+    public static boolean haveConflict(String[] event1, String[] event2){
+        //转成整数 分别是event1 = [time1,time2],event2 = [time3,time4] 统一假设 time1 <= time3
+        int time1 = Integer.parseInt(event1[0].substring(0,2)) * 60 + Integer.parseInt(event1[0].substring(3));
+        int time2 = Integer.parseInt(event1[1].substring(0,2)) * 60 + Integer.parseInt(event1[1].substring(3));
+        int time3 = Integer.parseInt(event2[0].substring(0,2)) * 60 + Integer.parseInt(event2[0].substring(3));
+        if(time1 > time3){
+            return haveConflict(event2,event1);
+        }
+        //存在交集就true 不存在交集就false
+        return !(time2 < time3 && time1 < time3);
     }
 }
