@@ -1005,4 +1005,21 @@ public class LeetCodeAnswer2023 {
         //存在交集就true 不存在交集就false
         return !(time2 < time3 && time1 < time3);
     }
+    //5.20 这天通宵了 很热 睡不着 越来越精神 起来玩了会舟舟 写了一道题
+    //leetcode No.674
+    public static int findLengthOfLCIS(int[] nums){
+        int res = 1,len = 1;
+        int last = nums[0];
+        for(int i = 1;i < nums.length;i++){
+            if(nums[i] > last){
+                len++;
+            }
+            else {
+                len = 1;
+            }
+            last = nums[i];
+            res = Math.max(res,len);
+        }
+        return res;
+    }
 }
