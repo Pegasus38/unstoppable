@@ -1022,4 +1022,18 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //5.29
+    //leetcode No.2455 忘了list=0，错了一遍
+    public static int averageValue(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        int sum = 0;
+        for(int i : nums){
+            if(i % 3 == 0 && i % 2 == 0){
+                list.add(i);
+                sum += i;
+            }
+        }
+        int n = list.size();
+        return n == 0 ? 0 : sum / n;
+    }
 }
