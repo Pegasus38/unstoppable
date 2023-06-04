@@ -1036,4 +1036,23 @@ public class LeetCodeAnswer2023 {
         int n = list.size();
         return n == 0 ? 0 : sum / n;
     }
+    //6.5
+    //leetcode No.2460 简单模拟 pass
+    public static int[] applyOperations(int[] nums) {
+        int[] res = new int[nums.length];
+        for(int i = 0;i < nums.length-1;i++){
+            if(nums[i] == nums[i+1]){
+                nums[i] *= 2;
+                nums[i+1] = 0;
+            }
+        }
+        int index = 0;
+        for(int i : nums){
+            if(i > 0){
+                res[index] = i;
+                index++;
+            }
+        }
+        return res;
+    }
 }
