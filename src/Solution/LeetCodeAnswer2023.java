@@ -1055,4 +1055,27 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //6.6
+    ///leetcode No.2352 做过了
+    public static int equalPairs(int[][] grid) {
+        int res = 0,n = grid.length;
+        HashMap<List<Integer>,Integer> map = new HashMap<>();
+        for(int[] i : grid){
+            List<Integer> list = new ArrayList<>();
+            for(int j : i){
+                list.add(j);
+            }
+            map.put(new ArrayList<>(list),map.getOrDefault(new ArrayList<>(list),0)+1);
+        }
+        for(int i = 0;i < n;i++){
+            List<Integer> list = new ArrayList<>();
+            for (int[] ints : grid) {
+                list.add(ints[i]);
+            }
+            if(map.containsKey(new ArrayList<>(list))){
+                res += map.get(new ArrayList<>(list));
+            }
+        }
+        return res;
+    }
 }
