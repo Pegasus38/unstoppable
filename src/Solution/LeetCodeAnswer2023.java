@@ -1056,7 +1056,7 @@ public class LeetCodeAnswer2023 {
         return res;
     }
     //6.6
-    ///leetcode No.2352 做过了
+    //leetcode No.2352 做过了
     public static int equalPairs(int[][] grid) {
         int res = 0,n = grid.length;
         HashMap<List<Integer>,Integer> map = new HashMap<>();
@@ -1074,6 +1074,27 @@ public class LeetCodeAnswer2023 {
             }
             if(map.containsKey(new ArrayList<>(list))){
                 res += map.get(new ArrayList<>(list));
+            }
+        }
+        return res;
+    }
+    //6.23
+    //leetcode No.2496
+    public static int maximumValue(String[] strs){
+        int res = 0;
+        for(String str : strs){
+            boolean isDigit = true;
+            for(char c : str.toCharArray()){
+                if(!Character.isDigit(c)){
+                    isDigit = false;
+                    break;
+                }
+            }
+            if(!isDigit){
+                res = Math.max(res,str.length());
+            }
+            else {
+                res = Math.max(res,Integer.parseInt(str));
             }
         }
         return res;
