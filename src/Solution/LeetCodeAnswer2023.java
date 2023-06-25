@@ -1099,4 +1099,33 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //6.25
+    //leetcode No.1401
+    public static boolean checkOverlap(int radius, int xCenter, int yCenter, int x1, int y1, int x2, int y2) {
+        //描点
+        int[][] points = new int[4][2];
+        points[0][0] = x1;points[0][1] = y1;//左下
+        points[1][0] = x1;points[1][1] = y2;//左上
+        points[2][0] = x2;points[2][1] = y2;//右上
+        points[3][0] = x2;points[3][1] = y1;//右下
+        //找距离
+        int min_distance = Integer.MAX_VALUE;
+        //如果圆心在矩形里面，那么无论半径多少，圆肯定在矩形里面，肯定重叠
+        if((yCenter>=y1 && yCenter <=y2) && (xCenter>=x1 && xCenter<=x2)){
+            return true;
+        }
+        //找左右，如果点在y1和y2中间 那么最短的就是他到x1或x2的垂直距离
+        if(yCenter>=y1 && yCenter <=y2){
+            min_distance = Math.min(Math.abs(x2-xCenter)*Math.abs(x2-xCenter),Math.abs(x1-xCenter)*Math.abs(x1-xCenter));
+        }
+        if(xCenter>=x1 && xCenter<=x2){
+            min_distance = Math.min(Math.abs(y2-yCenter)*Math.abs(y2-yCenter),Math.abs(y1-yCenter)*Math.abs(y1-yCenter));
+        }
+        //四个点的距离
+        for(int[] i : points){
+            min_distance = Math.min(min_distance,(i[0]-xCenter)*(i[0]-xCenter)+(i[1]-yCenter)*(i[1]-yCenter));
+        }
+        //如果l<=r，说明有重复部分，如果l>r，说明没有重复
+        return min_distance <= radius * radius;
+    }
 }
