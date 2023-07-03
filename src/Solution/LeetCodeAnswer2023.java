@@ -1128,4 +1128,22 @@ public class LeetCodeAnswer2023 {
         //如果l<=r，说明有重复部分，如果l>r，说明没有重复
         return min_distance <= radius * radius;
     }
+    //7.4 每日一题
+    //leetcode No.2679
+    public int matrixSum(int[][] nums) {
+        int res = 0,m = nums.length,n = nums[0].length;
+        for(int i = 0;i < m;i++){
+            int[] temp = nums[i];
+            Arrays.sort(temp);
+            nums[i] = temp;
+        }
+        for(int i = n -1 ;i >= 0;i--){
+            int max = 0;
+            for (int[] num : nums) {
+                max = Math.max(max, num[i]);
+            }
+            res += max;
+        }
+        return res;
+    }
 }
