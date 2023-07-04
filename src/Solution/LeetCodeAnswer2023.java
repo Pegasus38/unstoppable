@@ -1146,4 +1146,20 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //7.5 每日一题
+    //leetcode No.2600
+    public static int kItemsWithMaximumSum(int numOnes, int numZeros, int ignoredNumNegOnes, int k) {
+        //k有可能在以下几种情况：1.k在0,one之间；2.k在one-zero之间，3.k在zero-1之间
+        if(k == 0){
+            return 0;
+        }
+        if(k > 0 && k <= numOnes){
+            return k;
+        }
+        else if(k > numOnes && k <= numOnes+numZeros){
+            return numOnes;
+        }
+        int count = k - (numOnes+numZeros);
+        return numOnes - count;
+    }
 }
