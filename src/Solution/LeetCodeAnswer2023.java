@@ -1162,4 +1162,20 @@ public class LeetCodeAnswer2023 {
         int count = k - (numOnes+numZeros);
         return numOnes - count;
     }
+    //7.12 每日一题
+    //leetcode No.2544
+    public static int alternateDigitSum(int n) {
+        int res = 0;
+        boolean target = true;
+        for(char c : String.valueOf(n).toCharArray()){
+            if(target){
+                res += c - '0';
+            }
+            else {
+                res -= c - '0';
+            }
+            target = !target;
+        }
+        return res;
+    }
 }
