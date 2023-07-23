@@ -1178,4 +1178,15 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //7.24 终于遇到一道简单的题
+    //leetcode No.771
+    public int numJewelsInStones(String jewels, String stones) {
+        int res = 0;
+        for(char c : stones.toCharArray()){
+            if(jewels.indexOf(c) >= 0){
+                res++;
+            }
+        }
+        return res;
+    }
 }
