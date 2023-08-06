@@ -1208,4 +1208,18 @@ public class LeetCodeAnswer2023 {
         }
         return index;
     }
+    //8.6
+    //leetcode No.804 没什么难度 就转换然后丢进set里
+    public static int uniqueMorseRepresentations(String[] words) {
+        String[] s = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        HashSet<String> set = new HashSet<>();
+        for(String word : words){
+            StringBuilder sb = new StringBuilder();
+            for(char c : word.toCharArray()){
+                sb.append(s[c-'a']);
+            }
+            set.add(sb.toString());
+        }
+        return set.size();
+    }
 }
