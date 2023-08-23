@@ -1222,4 +1222,40 @@ public class LeetCodeAnswer2023 {
         }
         return set.size();
     }
+    //8.24 真很久没在自己电脑上学习了 太懒了 最近真的事业没有一点进展
+    //leetcode No.1267 做个每日一题再睡吧
+    public static int countServers(int[][] grid) {
+        int m = grid.length,n = grid[0].length;
+        int[] count_x = new int[m];
+        int[] count_y = new int[n];
+        int res = 0;
+        for(int i = 0;i < m;i++){
+            int count = 0;
+            for(int j = 0;j < n;j++){
+                if(grid[i][j] == 1){
+                    count++;
+                }
+            }
+            count_x[i] = count;//统计 每一行 有多少个电脑\
+            res += count_x[i];
+        }
+        for(int i = 0;i < n;i++){
+            int count = 0;
+            for (int[] ints : grid) {
+                if (ints[i] == 1) {
+                    count++;
+                }
+            }
+            count_y[i] = count;
+        }
+        int pass = 0;
+        for(int i = 0;i < m;i++){
+            for(int j = 0;j < n;j++){
+                if(grid[i][j] == 1 && count_x[i] == 1 && count_y[j] == 1){
+                    pass++;
+                }
+            }
+        }
+        return res - pass;
+    }
 }
