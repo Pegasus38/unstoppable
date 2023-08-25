@@ -1258,4 +1258,36 @@ public class LeetCodeAnswer2023 {
         }
         return res - pass;
     }
+    //8.26 有点失眠 起来做个题
+    //leetcode No.228 每日一题 我竟然发现以前写的更几把精简 一个钟过去了还在用原来的方法
+    public static List<String> summaryRanges(int[] nums) {
+        List<String> res = new ArrayList<>();
+        if(nums.length == 0){
+            return new ArrayList<>();
+        }
+        int len = 1;
+        for(int i = 1;i < nums.length;i++){
+            if(nums[i] == nums[i-1]+1){
+                len++;
+            }
+            else {
+                if(len == 1){
+                    res.add(String.valueOf(nums[i-1]));
+                }
+                else  {
+                    String s = (nums[i - 1] - len + 1) + "->" + nums[i - 1];
+                    res.add(s);
+                    len = 1;
+                }
+            }
+        }
+        if(len == 1){
+            res.add(String.valueOf(nums[nums.length-1]));
+        }
+        else {
+            String s = (nums[nums.length - 1] - len + 1) + "->" + nums[nums.length - 1];
+            res.add(s);
+        }
+        return res;
+    }
 }
