@@ -1290,4 +1290,17 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //9.1 每日一题 这个题一看就知道是自己做的
+    //leetcode No.2240
+    public static long waysToBuyPensPencils(int total, int cost1, int cost2) {
+        long res = 0;
+        int min = Math.min(cost1,cost2),max = Math.max(cost1,cost2);
+        int time = total / max;//最少能买time次笔
+        for(int i = 0;i <= time;i++){
+            int buy1 = i * max;
+            int buy2 = (total - buy1) / min;
+            res += buy2 + 1;
+        }
+        return res;
+    }
 }
