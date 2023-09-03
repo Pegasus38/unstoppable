@@ -1303,4 +1303,19 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //9.3 每日一题 不能理解为什么不过 思路没问题 而且一开始用了while 效率也不高 有点迷惑 这个题绝对不倒
+    //leetcode No.1921
+    public static int eliminateMaximum(int[] dist, int[] speed) {
+        int[] arrive = new int[dist.length];
+        for(int i = 0;i < dist.length;i++){
+            arrive[i] = (dist[i] - 1) / speed[i] + 1;//怪物到达时间 = 距离/速度 + 1
+        }
+        Arrays.sort(arrive);
+        for(int i = 0;i < dist.length;i++){
+            if(arrive[i] <= i){
+                return i;
+            }
+        }
+        return dist.length;
+    }
 }
