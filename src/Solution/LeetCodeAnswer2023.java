@@ -1,5 +1,6 @@
 package Solution;
 
+
 import java.util.*;
 
 public class LeetCodeAnswer2023 {
@@ -1303,7 +1304,7 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
-    //9.3 每日一题 不能理解为什么不过 思路没问题 而且一开始用了while 效率也不高 有点迷惑 这个题绝对不倒
+    //9.3 每日一题 不能理解为什么不过 思路没问题 而且一开始用了while 效率也不高 有点迷惑 这个题绝对不倒 其实后面是取整有问题
     //leetcode No.1921
     public static int eliminateMaximum(int[] dist, int[] speed) {
         int[] arrive = new int[dist.length];
@@ -1317,5 +1318,26 @@ public class LeetCodeAnswer2023 {
             }
         }
         return dist.length;
+    }
+    //9.5 每日一题
+    //leetcode No.2605
+    public static int minNumber(int[] nums1, int[] nums2) {
+        //备注一下 这题还不是同一个意思 不是找最小值 先找有没有重复 有重复就返回单独重复的数字 没有就拉几把倒
+        int[] count = new int[10];
+        int min1 = 10,min2 = 10;
+        for(int i : nums1){
+            count[i]++;
+            min1 = Math.min(min1,i);
+        }
+        for(int i : nums2){
+            count[i]++;
+            min2 = Math.min(min2,i);
+        }
+        for(int i = 0;i < count.length;i++){
+            if(count[i] == 2){
+                return i;
+            }
+        }
+        return Math.min(min1,min2) * 10 + Math.max(min1,min2);
     }
 }
