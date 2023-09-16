@@ -1356,4 +1356,19 @@ public class LeetCodeAnswer2023 {
         }
         return dp[nums.length-1];
     }
+    //9.17 今天变成打家劫舍2了
+    //leetcode No.213
+    public static int rob2(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+        if(nums.length == 2){
+            return Math.max(nums[0],nums[1]);
+        }
+        int[] n1 = new int[nums.length-1];
+        int[] n2 = new int[nums.length-1];
+        System.arraycopy(nums,0,n1,0,nums.length-1);
+        System.arraycopy(nums,1,n2,0,nums.length-1);
+        return Math.max(rob(n1),rob(n2));
+    }
 }
