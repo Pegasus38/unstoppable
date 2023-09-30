@@ -1371,4 +1371,23 @@ public class LeetCodeAnswer2023 {
         System.arraycopy(nums,1,n2,0,nums.length-1);
         return Math.max(rob(n1),rob(n2));
     }
+    //9.30 回家继续coding
+    //leetcode No.2136 自己做出来的hard题
+    public static int earliestFullBloom(int[] plantTime, int[] growTime) {
+        int n = plantTime.length;
+        int[][] plant = new int[n][2];
+        for(int i = 0;i < n;i++){
+            plant[i][0] = plantTime[i];
+            plant[i][1] = growTime[i];
+        }
+        Arrays.sort(plant,(o1,o2)->(o2[1] == o1[1] ? o2[0] - o1[0] : o2[1] - o1[1]));
+        int res = 0,p_time = 0,min_g_time = Integer.MAX_VALUE;
+        //排序完之后 长的最快的 就在最后面了
+        for(int[] p : plant){
+            p_time += p[0];//种植时间
+            min_g_time = Math.min(min_g_time,p[1]);
+            res = Math.max(p_time+min_g_time,res);
+        }
+        return res;
+    }
 }
