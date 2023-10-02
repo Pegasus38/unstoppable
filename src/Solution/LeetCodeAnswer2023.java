@@ -1390,4 +1390,15 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //10.2 股票2
+    //leetcode No.122 简单弱智题
+    public static int maxProfit2(int[] prices) {
+        int res = 0;
+        for(int i = 1;i < prices.length;i++){
+            if(prices[i] >= prices[i-1]){
+                res += prices[i] - prices[i-1];
+            }
+        }
+        return res;
+    }
 }
