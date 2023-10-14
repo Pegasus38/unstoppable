@@ -1401,4 +1401,29 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //10.15 最近真的每日都只做一题了 有点懒了 没有激情了 字典也不写了
+    //leetcode No.137 这个题不会做 写一下答案思路之 依次确定每一个二进制位
+    /*
+    思路：
+    依次计算 res的 每一个二进制位 是0还是1
+    考虑res的 第i个二进制位 它可能是0 或者 1
+    对于 非res的元素 每一个元素 都出现3次 对应的 第i个二进制位 是3个0 或者 3个1  他们的和 都是3的倍数 即0或3
+    所以有 res的第i个二进制位 是所有元素的 二进制位之和 除以3 的余数
+    所以需要 对于数组每一个元素 用位运算 (x >> i) & 1 得到x的第i个二进制位
+    然后相加 对3求余 得到0或1 也就是res的第i位
+     */
+    public static int singleNumber(int[] nums) {
+        int res = 0;
+        for(int i = 0;i < 32;i++){
+            int all = 0;
+            for(int num :nums){
+                all += ((num >> i) & 1);
+            }
+            if(all % 3 != 0){
+                res |= (1 << i);
+            }
+        }
+        return res;
+    }
+
 }
