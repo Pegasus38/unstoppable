@@ -1425,5 +1425,17 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
-
+    //10.26 简单题 写完睡觉
+    //leetcode No.2520
+    public static int countDigits(int num) {
+        int res = 0,temp = num;
+        while(temp > 0){
+            int t = temp % 10;
+            if(num % t == 0){
+                res++;
+            }
+            temp /= 10;
+        }
+        return res;
+    }
 }
