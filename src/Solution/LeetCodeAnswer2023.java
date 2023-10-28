@@ -1438,4 +1438,17 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //10.29 每日一题 中等题 写完睡觉
+    //leetcode No.274 莫名其妙过了 排个序 遍历就没了
+    public static int hIndex(int[] citations){
+        Arrays.sort(citations);
+        int n = citations.length;
+        for(int i = 0;i < n;i++){
+            int time = n - i;
+            if(citations[i] >= time){
+                return time;
+            }
+        }
+        return 0;
+    }
 }
