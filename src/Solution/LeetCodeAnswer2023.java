@@ -1451,4 +1451,18 @@ public class LeetCodeAnswer2023 {
         }
         return 0;
     }
+    //11.15 每日一题 好像已经半个月没有提交了
+    //leetcode No.2656 这个题有点弱智
+    public static int maximizeSum(int[] nums, int k) {
+        int max = 0,res = 0;
+        for(int i : nums){
+            max = Math.max(i,max);
+        }
+        while(k > 0){
+            res += max;
+            max += 1;
+            k--;
+        }
+        return res;
+    }
 }
