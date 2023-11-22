@@ -1,6 +1,7 @@
 package Solution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,11 +17,12 @@ public class MyCommonMethod {
         return list;
     }
     //想输出数组的方法，用于打印结果用，常用
-    public static List<Integer> myArrayToList(int [] arr){
-        List<Integer> list = new ArrayList<>();
-        for(int i : arr){
-            list.add(i);
+    public static List<String> myArrayToList(int[][] array){
+        List<String> list = new ArrayList<>();
+        for(int[] arr : array){
+            list.add(Arrays.toString(arr));
         }
         return list;
     }
+
 }

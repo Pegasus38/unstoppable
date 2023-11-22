@@ -1465,4 +1465,26 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //11.22 今天不太服气 一定要做出来
+    //leetcode No.2304
+    public static int minPathCost(int[][] grid, int[][] moveCost) {
+        int m = grid.length,n = grid[0].length;
+        int[][] dp = new int[m][n];
+        System.arraycopy(grid[0], 0, dp[0], 0, n);//复制第一行
+        for(int i = 1;i < m;i++){
+            for(int j = 0;j < n;j++){
+                int min = Integer.MAX_VALUE;
+                for(int k = 0;k < n;k++){
+                    int last = grid[i-1][k];//定位一个last 便于丢进m里面
+                    min = Math.min(min,dp[i-1][k] + moveCost[last][j] + grid[i][j]);//这一步记得 要加上g[i][j] 不然容易算错
+                }
+                dp[i][j] = min;//dp[i][j] = 上一行传过来的min
+            }
+        }
+        int res = Integer.MAX_VALUE;
+        for(int i = 0;i < n;i++){
+            res = Math.min(res,dp[m-1][i]);//找到最后一行的Min
+        }
+        return res;
+    }
 }
