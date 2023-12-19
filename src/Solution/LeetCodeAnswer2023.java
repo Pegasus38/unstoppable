@@ -1487,4 +1487,13 @@ public class LeetCodeAnswer2023 {
         }
         return res;
     }
+    //12.20 最近发现写东西好像没什么意义了 每日一题不会的copy 会的又是做过的 只能写一下这种简单弱智题
+    //leetcode No.2828
+    public static boolean isAcronym(List<String> words, String s) {
+        StringBuilder sb = new StringBuilder();
+        for(String word : words){
+            sb.append(word.charAt(0));
+        }
+        return sb.toString().equals(s);
+    }
 }

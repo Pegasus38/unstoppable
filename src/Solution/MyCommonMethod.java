@@ -17,12 +17,11 @@ public class MyCommonMethod {
         return list;
     }
     //想输出数组的方法，用于打印结果用，常用
-    public static List<String> myArrayToList(int[][] array){
+    public static List<String> parse2DArray(int[][] array){
         List<String> list = new ArrayList<>();
         for(int[] arr : array){
             list.add(Arrays.toString(arr));
         }
         return list;
     }
-
 }
