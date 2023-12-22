@@ -1496,4 +1496,23 @@ public class LeetCodeAnswer2023 {
         }
         return sb.toString().equals(s);
     }
+    //12.23 冷死了 写完速度碎觉
+    //leetcode No.1962 一眼优先队列解决
+    public static int minStoneSum(int[] piles, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>((o1,o2)->(o2-o1));
+        for(int i : piles){
+            queue.offer(i);
+        }
+        while(k > 0 && !queue.isEmpty()){
+            double temp = queue.poll() / 2.0;
+            queue.offer((int)(Math.ceil(temp)));
+            k--;
+        }
+        System.out.println(queue);
+        int res = 0;
+        while(!queue.isEmpty()){
+            res += queue.poll();
+        }
+        return res;
+    }
 }
