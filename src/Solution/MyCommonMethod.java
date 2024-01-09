@@ -24,4 +24,17 @@ public class MyCommonMethod {
         }
         return list;
     }
+    //计算最大公约数
+    public static int gcd(int a,int b){
+        if (b == 0){
+            return a;
+        }
+        else {
+            return gcd(b,a % b);
+        }
+    }
+    //计算最大公倍数
+    public static int lcm(int a,int b){
+        return a * b / gcd(a,b);
+    }
 }

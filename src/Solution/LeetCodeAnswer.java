@@ -2,7 +2,7 @@ package Solution;
 
 import java.util.*;
 
-public class LeetCodeAnswer2023 {
+public class LeetCodeAnswer {
     //今年所有的刷题记录都整合在这里吧 2023加油
     public static void main(String[] args) {
     }
@@ -1508,7 +1508,6 @@ public class LeetCodeAnswer2023 {
             queue.offer((int)(Math.ceil(temp)));
             k--;
         }
-        System.out.println(queue);
         int res = 0;
         while(!queue.isEmpty()){
             res += queue.poll();
@@ -1520,5 +1519,18 @@ public class LeetCodeAnswer2023 {
     public static int buyChoco(int[] prices, int money) {
         Arrays.sort(prices);
         return money - prices[0] - prices[1] >= 0 ? money - prices[0] - prices[1] : money;
+    }
+    //24.1.10
+    //leetcode No.2696 简单题
+    public static int minLength(String s) {
+        while(s.contains("AB") || s.contains("CD")) {
+            if(s.contains("AB")){
+                s = s.replace("AB","");
+            }
+            if(s.contains("CD")){
+                s = s.replace("CD","");
+            }
+        }
+        return s.length();
     }
 }
