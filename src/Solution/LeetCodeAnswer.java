@@ -1533,4 +1533,36 @@ public class LeetCodeAnswer {
         }
         return s.length();
     }
+    //24.1.12
+    //leetcode No.2085
+    public static int countWords(String[] words1, String[] words2) {
+        int res = 0;
+        HashMap<String,int[]> map = new HashMap<>();
+        for(String word : words1){
+            if(!map.containsKey(word)){
+                map.put(word,new int[]{1,0});//没有的话就放一个1,0
+            }
+            else {
+                int count = map.get(word)[0]+1;
+                map.put(word,new int[]{count,0});//有的话就放一个count+1,0
+            }
+        }
+        for(String word : words2){
+            if(!map.containsKey(word)){
+                map.put(word,new int[]{0,1});
+            }
+            else {
+                int count1 = map.get(word)[0];
+                int count2 = map.get(word)[1]+1;
+                map.put(word,new int[]{count1,count2});
+            }
+        }
+        for(String s : map.keySet()){
+            int[] value = map.get(s);
+            if(value[0] == 1 && value[1] == 1){
+                res++;
+            }
+        }
+        return res;
+    }
 }
