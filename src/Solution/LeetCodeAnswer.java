@@ -1565,4 +1565,35 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.1.23
+    //leetcode No.2765
+    public static int alternatingSubArray(int[] nums) {
+        int max = -1;
+        for(int i = 0;i < nums.length;i++){
+            int index = i;
+            boolean flag = true;
+            for(int j = i + 1;j < nums.length;j++){
+                if(flag){
+                    if(nums[j] - nums[index] == 1){
+                        max = Math.max(max,j-i+1);
+                        index++;
+                        flag = false;
+                    }
+                    else {
+                        break;
+                    }
+                }else {
+                    if(nums[index] - nums[j] == 1){
+                        max = Math.max(max,j-i+1);
+                        index++;
+                        flag = true;
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+        }
+        return max;
+    }
 }
