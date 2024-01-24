@@ -1596,4 +1596,22 @@ public class LeetCodeAnswer {
         }
         return max;
     }
+    //24.1.25
+    //leetcode No.2859 easy
+    public static int sumIndicesWithKSetBits(List<Integer> nums, int k) {
+        int res = 0;
+        for(int i = 0;i < nums.size();i++){
+            String s = Integer.toBinaryString(i);
+            int count = 0;
+            for(char c : s.toCharArray()){
+                if(c == '1'){
+                    count++;
+                }
+            }
+            if(count == k){
+                res += nums.get(i);
+            }
+        }
+        return res;
+    }
 }
