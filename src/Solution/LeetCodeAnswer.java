@@ -1565,6 +1565,46 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.1.17
+    //leetcode No.2744
+    public static int maximumNumberOfStringPairs(String[] words) {
+        /*
+        互不相同 匹配一次
+         */
+        int res = 0;
+        HashSet<String> set = new HashSet<>();
+        for(String word : words){
+            StringBuilder sb = new StringBuilder(word);
+            if(set.contains(sb.reverse().toString())){
+                res++;
+            }
+            set.add(word);
+        }
+        return res;
+    }
+    //24.1.20
+    //leetcode No.2788
+    public static List<String> splitWordsBySeparator(List<String> words, char separator) {
+        List<String> res = new ArrayList<>();
+        for(String word : words){
+            if(!word.contains(separator+"")){
+                System.out.println("123");
+                res.add(word);
+            }
+            else {
+                //注意 不能直接用split 因为要转义 ".,|$#@"这里面 这几个
+                word = word.replace(separator,'1');
+                String[] temp = word.split("1");
+                for(String t : temp){
+                    t = t.strip();
+                    if(t.length() > 0){
+                        res.add(t);
+                    }
+                }
+            }
+        }
+        return res;
+    }
     //24.1.23
     //leetcode No.2765
     public static int alternatingSubArray(int[] nums) {
