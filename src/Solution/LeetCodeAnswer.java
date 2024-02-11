@@ -1669,4 +1669,19 @@ public class LeetCodeAnswer {
         list.add(treeNode.val);
         inorder(treeNode.right,list);
     }
+    //24.2.11
+    //leetcode No.144 又是二叉树
+    public static List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        preorder(root,res);
+        return res;
+    }
+    public static void preorder(TreeNode treeNode,List<Integer> list){
+        if(treeNode == null){
+            return;
+        }
+        list.add(treeNode.val);
+        preorder(treeNode.left,list);
+        preorder(treeNode.right,list);
+    }
 }
