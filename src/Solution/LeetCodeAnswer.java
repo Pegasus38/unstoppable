@@ -1654,34 +1654,4 @@ public class LeetCodeAnswer {
         }
         return res;
     }
-    //24.2.10
-    //leetcode No.94
-    public static List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        inorder(root,res);
-        return res;
-    }
-    public static void inorder(TreeNode treeNode,List<Integer> list){
-        if(treeNode == null){
-            return;
-        }
-        inorder(treeNode.left,list);
-        list.add(treeNode.val);
-        inorder(treeNode.right,list);
-    }
-    //24.2.11
-    //leetcode No.144 又是二叉树
-    public static List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        preorder(root,res);
-        return res;
-    }
-    public static void preorder(TreeNode treeNode,List<Integer> list){
-        if(treeNode == null){
-            return;
-        }
-        list.add(treeNode.val);
-        preorder(treeNode.left,list);
-        preorder(treeNode.right,list);
-    }
 }
