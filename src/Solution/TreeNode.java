@@ -7,7 +7,8 @@ public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-    TreeNode(){};
+    TreeNode(){}
+
     TreeNode(int val){
         this.val = val;
     }
@@ -60,5 +61,18 @@ public class TreeNode {
         postorder(treeNode.left,list);
         postorder(treeNode.right,list);
         list.add(treeNode.val);
+    }
+    /*
+    dfs模板
+     */
+    public static void dfs(TreeNode root){
+        if(root == null){
+            return;
+        }
+        /*
+        要做的操作，留空
+         */
+        dfs(root.left);
+        dfs(root.right);
     }
 }
