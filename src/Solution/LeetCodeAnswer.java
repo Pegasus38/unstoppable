@@ -1654,4 +1654,24 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.3.6
+    //leetcode No.2917 easy
+    public static int findKOr(int[] nums, int k) {
+        int[] count = new int[32];//范围2^0-2^31
+        for(int num : nums){
+            String binaryString = Integer.toBinaryString(num);
+            for(int i = binaryString.length() - 1;i >= 0;i--){
+                if(binaryString.charAt(i) == '1'){
+                    count[binaryString.length() - i - 1]++;
+                }
+            }
+        }
+        int res = 0;
+        for(int i = 0;i < count.length;i++){
+            if(count[i] >= k){
+                res += (int)Math.pow(2,i);
+            }
+        }
+        return res;
+    }
 }
