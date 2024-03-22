@@ -1674,4 +1674,24 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.3.23
+    //leetcode No.2549 纯傻逼 还写了个埃氏筛 吊用没有
+    public static int distinctIntegers(int n) {
+        Set<Integer> set = new HashSet<>();
+        set.add(n);
+        if(n == 1){
+            return set.size();
+        }
+        int temp = 0;
+        while(n != 2){
+            for(int i = 1;i <= n;i++){
+                if(n % i == 1){
+                    set.add(i);
+                    temp = i;
+                }
+            }
+            n = temp;
+        }
+        return set.size();
+    }
 }

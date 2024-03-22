@@ -37,4 +37,34 @@ public class MyCommonMethod {
     public static int lcm(int a,int b){
         return a * b / gcd(a,b);
     }
+    //埃氏筛
+    public static List<Integer> Eratosthenes(int n){
+        List<Integer> res = new ArrayList<>();
+        if(n == 1){
+            return res;
+        }
+        int[] aa = new int[n];
+        aa[2] = 0;
+        int k = 2,tt = 0;
+        while(tt < n){
+            for(int i = 1;i < aa.length;i++){//筛出非质数
+                if(i % k == 0 && i != k){
+                    aa[i] = 1;
+                }
+            }
+            for(int i = 1;i < aa.length;i++){//将筛选后第一个数作为新的筛子
+                if(i > k && aa[i] == 0){
+                    k = i;
+                    break;
+                }
+            }
+            tt++;
+        }
+        for(int i = 1; i < aa.length;i++){
+            if(aa[i] == 0){
+                res.add(i);
+            }
+        }
+        return res;
+    }
 }
