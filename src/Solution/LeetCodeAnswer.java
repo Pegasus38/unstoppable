@@ -1709,4 +1709,18 @@ public class LeetCodeAnswer {
         }
         return res == Integer.MAX_VALUE ? -1 : res;
     }
+    //24.4.1 又六点醒了
+    //leetcode No.2810 easy
+    public static String finalString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()){
+            if(c != 'i'){
+                sb.append(c);
+            }
+            else {
+                sb.reverse();
+            }
+        }
+        return sb.toString();
+    }
 }
