@@ -1723,4 +1723,18 @@ public class LeetCodeAnswer {
         }
         return sb.toString();
     }
+    //24.4.9
+    //leetcode NO.2529 easy
+    public int maximumCount(int[] nums) {
+        int pos = 0,neg = 0;
+        for(int num : nums){
+            if(num > 0){
+                pos++;
+            }
+            else if(num < 0){
+                neg++;
+            }
+        }
+        return Math.max(pos,neg);
+    }
 }
