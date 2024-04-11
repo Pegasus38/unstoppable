@@ -1737,4 +1737,22 @@ public class LeetCodeAnswer {
         }
         return Math.max(pos,neg);
     }
+    //24.4.12 easy
+    //leetcode No.2923 easy
+    public static int findChampion(int[][] grid) {
+        // 其实是一道语文题 g[i][j] = 1 也就是说这一行 只有 g[i][j] = 0 其他都必须是1
+        int n  = grid.length;
+        for(int i = 0;i < n;i++){
+            int sum = 1;
+            for(int j = 0;j < n;j++){
+                if(i != j) {
+                    sum *= grid[i][j];
+                }
+            }
+            if(sum == 1){
+                return i;
+            }
+        }
+        return 0;
+    }
 }
