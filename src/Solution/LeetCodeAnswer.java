@@ -1755,4 +1755,18 @@ public class LeetCodeAnswer {
         }
         return 0;
     }
+    //24.4.27 easy
+    //leetcode No.2639
+    public static int[] findColumnWidth(int[][] grid) {
+        int[] res = new int[grid[0].length];
+        for(int i = 0;i < grid[0].length;i++){
+            int max = 0;
+            for (int[] ints : grid) {
+                int len = ints[i] >= 0 ? String.valueOf(ints[i]).length() : String.valueOf(-ints[i]).length() + 1;
+                max = Math.max(len, max);
+            }
+            res[i] = max;
+        }
+        return res;
+    }
 }
