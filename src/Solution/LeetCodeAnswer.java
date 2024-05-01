@@ -1769,4 +1769,63 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.5.1 mid
+    //leetcode No.2462
+    public static long totalCost(int[] costs, int k, int candidates) {
+        long res = 0;
+        PriorityQueue<Integer> queue1 = new PriorityQueue<>();
+        PriorityQueue<Integer> queue2 = new PriorityQueue<>();
+        for(int i = 0;i < candidates;i++){
+            queue1.offer(costs[i]); //把前C个数送进q1
+            queue2.offer(costs[costs.length-1-i]);//把后C个数送进q2
+        }
+        int front_index = candidates,behind_index = costs.length - candidates - 1;
+        if(front_index > behind_index){
+            Arrays.sort(costs);
+            for(int i = 0;i < k;i++){
+                res += costs[i];
+            }
+            return res;
+        }
+        boolean flag = false;
+        //0-3 6-9 假如从0-3里踢了一个数 那么把f加进去，然后f+1
+        //假如从6-9里踢了一个数 那么把b加进去，然后b-1
+        //当f=b的时候说明重叠了 这个时候数组没剩下数字了 看那个小 弹那个
+        //还有一种情况 数组没数字 且有一方被弹空了
+        while(k > 0){
+            if(!queue1.isEmpty() && !queue2.isEmpty()){
+                int num1 = queue1.peek();
+                int num2 = queue2.peek();
+                if(num1 <= num2){
+                    res += num1;
+                    queue1.poll();
+                    if(!flag) {
+                        queue1.offer(costs[front_index]);
+                        front_index++;
+                    }
+                }
+                else {
+                    res += num2;
+                    queue2.poll();
+                    if(!flag) {
+                        queue2.offer(costs[behind_index]);
+                        behind_index--;
+                    }
+                }
+                if(front_index > behind_index){
+                    flag = true;
+                }
+            }
+            else {
+                if(!queue1.isEmpty()){
+                    res += queue1.poll();
+                }
+                else if(!queue2.isEmpty()){
+                    res += queue2.poll();
+                }
+            }
+            k--;
+        }
+        return res;
+    }
 }
