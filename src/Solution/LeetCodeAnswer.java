@@ -1828,4 +1828,14 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.5.3 easy
+    //leetcode No.1491
+    public static double average(int[] salary) {
+        long sum = 0;
+        Arrays.sort(salary);
+        for(int i = 1;i < salary.length - 1; i++){
+            sum += salary[i];
+        }
+        return  (sum / (double)(salary.length - 2));
+    }
 }
