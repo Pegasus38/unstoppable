@@ -1838,4 +1838,44 @@ public class LeetCodeAnswer {
         }
         return  (sum / (double)(salary.length - 2));
     }
+    //24.5.4 copy一道hard
+    //leetcode No.857
+    public static double minCostToHireWorkers(int[] quality, int[] wage, int k){
+        /*
+        假设选择了某一个组H 构成k个人 总质量 = tQ 总支付 = tC
+        那么对于任意组内工人H[i] 满足 -- tC / tQ * q[i] >= w[i]
+        即 总金额/总质量 * 单个工人质量 >= 对应金额
+        那么 总金额 = 总质量 * （金额[i] / 质量[i])
+        那么工作质量固定的时候 最小金额 只和 工资组里 最大的 （金额[i] / 质量[i])有关
+        由此推出贪心算法：权重 = （金额[i] / 质量[i])
+        以某个工人x作为权重最高的时候，其他人需要小于x
+        枚举每一个能成为权重最大的人，来计算开销，然后取最小
+         */
+        int n = quality.length;
+        Integer[] h = new Integer[n];
+        for(int i = 0;i < n;i++){
+            h[i] = i; // h是个下标数组 用来排序用 在不打乱原数组金额和质量对应顺序的前提下 以及不额外使用map来一对一的情况下
+        }
+        // 这一步 是按权重排序 假设 w[a]/q[a] > w[b]/q[b] 那么有 w[a] * q[b] > w[b] * q[a] 即 (w[a] * q[b] - w[b] * q[a]) > 0
+        Arrays.sort(h,(a,b)-> quality[b] * wage[a] - quality[a] * wage[b]);
+        double res = 1e9;
+        double totalQ = 0.0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->(b-a));
+        for(int i = 0;i < k - 1; i++){
+            totalQ += quality[h[i]];
+            pq.offer(quality[h[i]]); //先计算前k-1个权重最小的总金额，把他们放进优先队列里
+        }
+        //然后遍历 剩下的 n - (k - 1) 个数 一边放进去一边弹栈顶 最后找出一个数就行
+        for(int i = k - 1;i < n;i++){
+            int index = h[i];
+            totalQ += quality[index];
+            pq.offer(quality[index]);
+            double totalC = ((double) wage[index] / quality[index]) * totalQ;
+            res = Math.min(res,totalC);
+            if(!pq.isEmpty()) {
+                totalQ -= pq.poll();
+            }
+        }
+        return res;
+    }
 }
