@@ -1878,4 +1878,15 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.5.10 easy
+    //leetcode No.2960
+    public static int countTestedDevices(int[] batteryPercentages) {
+        int count = 0;
+        for (int batteryPercentage : batteryPercentages) {
+            if (batteryPercentage - count > 0) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
