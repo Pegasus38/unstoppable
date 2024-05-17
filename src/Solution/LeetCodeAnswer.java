@@ -1889,4 +1889,27 @@ public class LeetCodeAnswer {
         }
         return count;
     }
+    //24.5.18 easy
+    //leetcode No.2644
+    public static int maxDivScore(int[] nums, int[] divisors) {
+        int res = -1,max = -1;
+        for(int divisor : divisors){
+            int count = 0;
+            for(int num : nums){
+                if(num % divisor == 0){
+                    count++;
+                }
+                if(count > max){
+                    res = divisor;
+                    max = count;
+                }
+                else if(count == max){
+                    if(res > divisor){
+                        res = divisor;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }
