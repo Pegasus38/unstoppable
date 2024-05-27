@@ -1925,4 +1925,15 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.5.28 easy
+    //leetcode No.2951
+    public static List<Integer> findPeaks(int[] mountain) {
+        List<Integer> res = new ArrayList<>();
+        for(int i = 1;i < mountain.length - 1;i++){
+            if(mountain[i] > mountain[i-1] && mountain[i] > mountain[i+1]){
+                res.add(i);
+            }
+        }
+        return res;
+    }
 }
