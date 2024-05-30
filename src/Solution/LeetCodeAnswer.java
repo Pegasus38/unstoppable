@@ -1936,4 +1936,25 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.5.31 easy
+    //leetcode No.2965
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int n = grid.length;
+        int[] count = new int[n*n+1];
+        for(int[] i :grid){
+            for(int j : i){
+                count[j]++;
+            }
+        }
+        int a = -1,b = -1;
+        for(int i = 1;i < count.length;i++){
+            if(count[i] == 2){
+                a = i;
+            }
+            else if(count[i] == 0){
+                b = i;
+            }
+        }
+        return new int[]{a,b};
+    }
 }
