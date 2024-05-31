@@ -1957,4 +1957,29 @@ public class LeetCodeAnswer {
         }
         return new int[]{a,b};
     }
+    //24.6.1 easy
+    //leetcode No.2928
+    public static int distributeCandies(int n, int limit) {
+        //分给3个人 每个人不超过limit个
+        int res = 0;
+        if(limit * 3 < n){
+            return res;//如果limit * 3 < n 说明 n / 3 > limit 甚至 不能分到最小
+        }
+        else if(limit * 3 == n){
+            return 1;//如果刚好相对 说明只有 l,l,l一种分法
+        }
+        else {
+            //两个条件 ： a+b+c = n ; 0=<a,b,c<=limit
+            for(int i = 0;i <= n;i++){
+                for(int j = 0;j <= n;j++){
+                    for(int k = 0;k <= n;k++){
+                        if(i + j + k == n && i <= limit && j <= limit && k <= limit){
+                            res++;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }
