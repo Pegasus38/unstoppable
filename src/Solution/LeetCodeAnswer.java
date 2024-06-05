@@ -1982,4 +1982,22 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.6.6 睡不着 medium
+    //leetcode No.2938
+    public static long minimumSteps(String s) {
+        /*
+        遇到0就计数，遇到1就结算
+         */
+        long res = 0;
+        int count = 0;
+        for(int i = s.length() - 1; i >= 0;i--){
+            if(s.charAt(i) == '0'){
+                count++;
+            }
+            else {
+                res += count;
+            }
+        }
+        return res;
+    }
 }
