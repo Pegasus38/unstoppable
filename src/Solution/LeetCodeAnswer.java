@@ -2000,4 +2000,18 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.6.7 easy
+    //leetcode No.3038
+    public static int maxOperations(int[] nums) {
+        int count = 1,sum = nums[0] + nums[1];
+        for(int i = 3;i < nums.length; i += 2){
+            if(nums[i] + nums[i-1] == sum){
+                count++;
+            }
+            else {
+                break;
+            }
+        }
+        return count;
+    }
 }
