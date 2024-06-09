@@ -2014,4 +2014,29 @@ public class LeetCodeAnswer {
         }
         return count;
     }
+    //24.6.10 medium
+    //leetcode No.881
+    public static int numRescueBoats(int[] people, int limit) {
+        /*
+        大清早起来一个半钟发现裂了，看答案重写
+        排序，然后两个指针l,r首位开始匹配
+        如果p[l]+p[r] <= limit，说明可以同船，count+1，两边各自往中间靠
+        如果p[l]+p[r] > limit，说明不能成组，因为不能超过limit,所以p[r]自己要成，r左移
+        草 原来最重+最轻的做法已经足够了 不用最优解
+        假设最优解数量=c1，贪心解数量=c2
+        最终答案=二元组数量+剩余人数数量，二元组数量是固定的，剩余人数也固定
+        也就是说无论是最优解还是贪心解，每一对能组合的人的数量都是一样的
+        证明比题还抽象，不看了
+         */
+        Arrays.sort(people);
+        int n = people.length;
+        int l = 0, r = n - 1;
+        int ans = 0;
+        while (l <= r) {
+            if (people[l] + people[r] <= limit) l++;
+            r--;
+            ans++;
+        }
+        return ans;
+    }
 }
