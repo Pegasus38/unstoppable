@@ -2039,4 +2039,26 @@ public class LeetCodeAnswer {
         }
         return ans;
     }
+    //24.6.15 medium
+    //leetcode No.2779
+    public static int maximumBeauty(int[] nums, int k) {
+        /*
+        子序列，不需要顺序，直接排序
+        然后双指针，在区间内就加，不在就左指针往右滑
+         */
+        Arrays.sort(nums);
+        int res = 1,left = 0;
+        for(int right = 1;right < nums.length;right++){
+            if(nums[right] - nums[left] <= k * 2){
+                res = Math.max(res,right-left+1);
+            }
+            else {
+                while(nums[right] - nums[left] > k * 2){
+                    left++;
+                }
+            }
+        }
+        res = Math.max(res,nums.length-left);
+        return res;
+    }
 }
