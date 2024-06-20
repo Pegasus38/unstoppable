@@ -2061,4 +2061,24 @@ public class LeetCodeAnswer {
         res = Math.max(res,nums.length-left);
         return res;
     }
+    //24.6.21
+    //leetcode Lcp 61
+    public static int temperatureTrend(int[] temperatureA, int[] temperatureB) {
+        /*
+        注意，是趋势相同的，最大天数，两个定语，趋势相同，最大
+         */
+        int res = 0,max = 0;
+        for(int i = 1;i < temperatureA.length;i++){
+            int diffA = temperatureA[i] - temperatureA[i-1];
+            int diffB = temperatureB[i] - temperatureB[i-1];
+            if((diffA > 0 && diffB > 0) || (diffA == 0 && diffB == 0) || (diffA < 0 && diffB < 0)){
+                max++;
+            }
+            else {
+                max = 0;
+            }
+            res = Math.max(res,max);
+        }
+        return res;
+    }
 }
