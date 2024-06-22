@@ -2081,4 +2081,24 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.6.23 easy
+    //leetcode No.520
+    public static boolean detectCapitalUse(String word) {
+        boolean upper = true,lower = true;
+        int upper_count = 0;
+        for(char c : word.toCharArray()){
+            if(Character.isUpperCase(c)){
+                lower = false;
+                upper_count++;
+            }
+            else {
+                upper = false;
+            }
+        }
+        if(upper || lower){
+            return true; // 如果全大写或全小写 说明有效
+        }
+        //如果走到下面的return 说明u和l都为false 这个时候判断是否只有一个大写 和大写是否为首个字符即可
+        return upper_count == 1 && Character.isUpperCase(word.charAt(0));
+    }
 }
