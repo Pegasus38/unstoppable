@@ -2101,4 +2101,13 @@ public class LeetCodeAnswer {
         //如果走到下面的return 说明u和l都为false 这个时候判断是否只有一个大写 和大写是否为首个字符即可
         return upper_count == 1 && Character.isUpperCase(word.charAt(0));
     }
+    //24.6.29 easy
+    //leetcode No.2710
+    public static String removeTrailingZeros(String num) {
+        int index = num.length() - 1;
+        while(index > 0 && num.charAt(index) == '0'){
+            index--;
+        }
+        return num.substring(0,index+1);
+    }
 }
