@@ -2110,4 +2110,19 @@ public class LeetCodeAnswer {
         }
         return num.substring(0,index+1);
     }
+    //24.7.2 medium
+    //leetcode No.3115
+    public static int maximumPrimeDifference(int[] nums) {
+        List<Integer> even = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
+        List<Integer> index = new ArrayList<>();
+        for(int i = 0;i < nums.length;i++){
+            if(even.contains(nums[i])){
+                index.add(i);
+            }
+        }
+        if(index.size() == 1){
+            return 0;
+        }
+        return index.get(index.size()-1) - index.get(0);
+    }
 }
