@@ -2125,4 +2125,17 @@ public class LeetCodeAnswer {
         }
         return index.get(index.size()-1) - index.get(0);
     }
+    //24.7.3 easy
+    //leetcode No.3099
+    public static int sumOfTheDigitsOfHarshadNumber(int x) {
+        int sum = 0,temp = x;
+        while(temp > 0){
+            sum += temp % 10;
+            temp /= 10;
+        }
+        if(x % sum == 0){
+            return sum;
+        }
+        return -1;
+    }
 }
