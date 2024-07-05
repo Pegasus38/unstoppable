@@ -2138,4 +2138,25 @@ public class LeetCodeAnswer {
         }
         return -1;
     }
+    //24.7.6 medium
+    //leetcode No.3101
+    public static long countAlternatingSubArrays(int[] nums) {
+        /*
+        从nums[0]开始 res = 1 len = 1
+        如果n[i] != n[i-1] len++ res += len
+        如果n[i] == n[i-1] len = 1 res += len
+         */
+        long res = 1;
+        int len = 1;
+        for(int i = 1;i < nums.length;i++){
+            if(nums[i] != nums[i-1]){
+                len++;
+            }
+            else {
+                len = 1;
+            }
+            res += len;
+        }
+        return res;
+    }
 }
