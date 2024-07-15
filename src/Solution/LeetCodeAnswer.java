@@ -2170,4 +2170,26 @@ public class LeetCodeAnswer {
         }
         return nums;
     }
+    //24.7.16 easy
+    //leetcode No.2956
+    public static int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        int c1 = 0,c2 = 0;
+        for(int num : nums1){
+            set1.add(num);
+        }
+        for(int num : nums2){
+            if(set1.contains(num)){
+                c2++;
+            }
+            set2.add(num);
+        }
+        for(int num : nums1){
+            if(set2.contains(num)){
+                c1++;
+            }
+        }
+        return new int[]{c1,c2};
+    }
 }
