@@ -2192,4 +2192,14 @@ public class LeetCodeAnswer {
         }
         return new int[]{c1,c2};
     }
+    //24.7.26
+    //leetcode No.2740
+    public static int findValueOfPartition(int[] nums) {
+        Arrays.sort(nums);
+        int res = Integer.MAX_VALUE;
+        for(int i = 1;i < nums.length;i++){
+            res = Math.min(res,nums[i] - nums[i-1]);
+        }
+        return res;
+    }
 }
