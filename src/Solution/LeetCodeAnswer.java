@@ -2202,4 +2202,17 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.7.31 medium
+    //leetcode No.3111
+    public static int minRectanglesToCoverPoints(int[][] points, int w) {
+        Arrays.sort(points, Comparator.comparingInt(a -> a[0]));
+        int res = 1,start = points[0][0] + w;
+        for(int i = 1;i < points.length;i++){
+            if(points[i][0] > start){
+                res++;
+                start = points[i][0] + w;
+            }
+        }
+        return res;
+    }
 }
