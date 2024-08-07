@@ -2215,4 +2215,14 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.8.8 easy
+    //leetcode No.3131
+    public static int addedInteger(int[] nums1, int[] nums2) {
+        int r1 = -1,r2 = -1;
+        for(int i = 0;i < nums1.length;i++){
+            r1 = Math.max(r1,nums1[i]);
+            r2 = Math.max(r2,nums2[i]);
+        }
+        return r2 - r1;
+    }
 }
