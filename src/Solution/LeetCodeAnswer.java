@@ -2225,4 +2225,19 @@ public class LeetCodeAnswer {
         }
         return r2 - r1;
     }
+    //24.8.13 easy
+    //leetcode No.3151
+    public static boolean isArraySpecial(int[] nums) {
+        if(nums.length == 1){
+            return true;
+        }
+        for(int i = 1;i < nums.length;i++){
+            boolean b1 = nums[i - 1] % 2 == 0;
+            boolean b2 = nums[i] % 2 == 0;
+            if(b1 == b2){
+                return false;
+            }
+        }
+        return true;
+    }
 }
