@@ -2250,4 +2250,26 @@ public class LeetCodeAnswer {
         }
         return res;
     }
+    //24.8.29 easy 即将告别670多天的leetcode生涯 因为发现好像没什么必要和意义了
+    //leetcode No.3142
+    public static boolean satisfiesConditions(int[][] grid) {
+        int m = grid.length,n = grid[0].length;
+        // 列相同，行相隔不同
+        for (int[] ints : grid) {
+            for (int j = 0; j < n - 1; j++) {
+                if (ints[j] == ints[j + 1]) {
+                    return false; // 同一行，两个相邻的数不同
+                }
+            }
+        }
+        for(int i = 0;i < n;i++){
+            int now = grid[0][i];
+            for(int j = 1;j < m;j++){
+                if(grid[j][i] != now){
+                    return false; // 同一列，每个数必须等于这列的第一个数
+                }
+            }
+        }
+        return true;
+    }
 }
