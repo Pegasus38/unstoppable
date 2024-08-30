@@ -2272,4 +2272,18 @@ public class LeetCodeAnswer {
         }
         return true;
     }
+    //24.8.31 leetcode告别题 easy
+    //leetcode No.3127
+    public static boolean canMakeSquare(char[][] grid) {
+        char left_up = grid[0][0],up = grid[0][1],right_up = grid[0][2],left = grid[1][0],center = grid[1][1];
+        char right = grid[1][2],left_down = grid[2][0],down = grid[2][1],right_down = grid[2][2];
+        //1.先扫一遍，当前是否符合条件,其实需要扫的也就四个角
+        if((left_up == up && left_up == left) || (right_up == up && right_up == right) || (left_down == down && left_down == left) || (right_down == right && right_down == down)){
+            return true; //如果四个角其中一个，等于隔壁两个，那么只需要改变中间，就肯定能符合条件
+        }
+        if((center == left && center == up) || (center == left && center == down) || (center == right && center == up) || (center == right && center == down)){
+            return true; // 如果中心等于相邻两个，那只需要改变角，就肯定能符合条件
+        }
+        return ((left_up == center) && (left_up == left || left_up == up)) || ((left_down == center) && (left_down == left || left_down == down)) || ((right_down == center) && (right_down == right || right_down == down)) || ((right_up == center) && (right_up == right || right_up == up)); // 如果角等于中心，且与隔壁任一相同，只需改变另一个就肯定符合条件
+    }
 }
